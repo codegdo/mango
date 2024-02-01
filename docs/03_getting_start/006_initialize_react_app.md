@@ -26,5 +26,3 @@ Run Install React Project
 ```bash
 npm install
 ```
-
-Commit the change and push to repository
