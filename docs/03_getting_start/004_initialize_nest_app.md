@@ -17,6 +17,10 @@ nest new nest
 
 Which package manager would you like to use: npm + TypeScript
 
+Cd to nest folder and run command:
+
 # remove .git file
 
+```bash
 rm -rf .git
+```
