@@ -20,3 +20,4 @@ Select a variant: TypeScript
 
 Copy .gitignore and pasted in root .gitignore
 Remove .gitignore from react folder
+Commit the change and push to repository
