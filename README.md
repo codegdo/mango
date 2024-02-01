@@ -1,2 +1,2 @@
-# partnerportal
-channel sales
+# mango
+mango sales
