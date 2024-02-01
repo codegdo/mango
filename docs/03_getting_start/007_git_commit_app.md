@@ -7,7 +7,7 @@ git add .
 Commit the changes with a meaningful message:
 
 ```bash
-git commit -m "Initialize react application"
+git commit -m "Initialize application"
 ```
 
 Push the changes to your remote repository (assuming you have already set up a remote repository on a platform like GitHub):

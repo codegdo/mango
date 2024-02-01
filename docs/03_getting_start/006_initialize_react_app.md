@@ -20,4 +20,11 @@ Select a variant: TypeScript
 
 Copy .gitignore and pasted in root .gitignore
 Remove .gitignore from react folder
+
+Run Install React Project
+
+```bash
+npm install
+```
+
 Commit the change and push to repository
