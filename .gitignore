@@ -1,3 +1,10 @@
+# COMMON
+# Ignore node_modules directory
+node_modules/
+logs/
+dist/
+.env
+
 # REACT
 # Logs
 logs
