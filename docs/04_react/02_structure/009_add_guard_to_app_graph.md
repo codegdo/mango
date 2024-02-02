@@ -10,4 +10,4 @@ app.component.tsx
 |   |   |-- pages/dashboard/dashboard.welcome.tsx
 ```
 
-![app_graph](images/app.graph_3.png)
+![app_graph_3](images/app.graph_3.png)

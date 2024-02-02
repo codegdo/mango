@@ -38,4 +38,4 @@ app.component.tsx
 |   |-- pages/dashboard/dashboard.welcome.tsx
 ```
 
-![app_graph](images/app.graph_1.png)
+![app_graph_1](images/app.graph_1.png)
