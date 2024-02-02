@@ -7,6 +7,6 @@ app.component.tsx
 |-- app.router.tsx
 |   |-- app.layout.tsx
 |   |   |-- pages/dashboard/dashboard.welcome.tsx
+```
 
 ![app_graph](images/app.graph_2.png)
-```
