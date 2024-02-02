@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+import { Welcome } from "./pages/dashboard/welcome.dashboard";
 
 const routes = [
   {
     path: '/',
-    element: <div>HOME</div>
+    element: <Welcome />
   }
 ];
 

@@ -6,3 +6,6 @@ function App() {
 }
 
 export default App;
+
+
+// npx madge src/app.component.tsx --image src/app.graph.png --warning
