@@ -1,4 +1,4 @@
-# Add Guard To App Graph
+# Add Login To App Graph
 
 Now that we have wrapped the pages in the suspense layout, the updated project graph looks like this:
 
