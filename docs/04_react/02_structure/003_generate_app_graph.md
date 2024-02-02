@@ -35,7 +35,7 @@ This command generates a visual graph of project dependencies using 'madge' and 
 ```plaintext
 app.component.tsx
 |-- app.router.tsx
-|   |-- pages/dashboard/welcome.dashboard.tsx
+|   |-- pages/dashboard/dashboard.welcome.tsx
 ```
 
-![title](images/app.graph_1.png)
+![app_graph](images/app.graph_1.png)

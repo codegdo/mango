@@ -1,10 +1,13 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Welcome } from "./pages/dashboard/welcome.dashboard";
+import { Layout } from "./app.layout";
+//import Welcome from "./pages/dashboard/dashboard.welcome";
+const Welcome = lazy(() => import('./pages/dashboard/dashboard.welcome'));
 
 const routes = [
   {
     path: '/',
-    element: <Welcome />
+    element: <Layout module="dashboard" component={Welcome} />
   }
 ];
 

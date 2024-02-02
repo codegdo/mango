@@ -15,25 +15,31 @@
      mkdir dashboard
      ```
 
-3. **Create 'welcome.dashboard.tsx' File:**
+3. **Create 'dashboard.welcome.tsx' File:**
 
-   - Inside the 'dashboard' folder, create a file named 'welcome.dashboard.tsx':
+   - Inside the 'dashboard' folder, create a file named 'dashboard.welcome.tsx':
+
      ```tsx
-     // src/pages/dashboard/welcome.dashboard.tsx
-     export function Welcome() {
+     // src/pages/dashboard/dashboard.welcome.tsx
+     function Welcome() {
        return <>Welcome</>;
      }
+
+     export default Welcome;
      ```
 
-4. **Import 'welcome.dashboard.tsx' in 'app.router.tsx':**
+   **Important Note:**
+   When employing lazy loading for pages, make sure to use the `export default` syntax for the page components.
+
+4. **Import 'dashboard.welcome.tsx' in 'app.router.tsx':**
 
    - Open the 'app.router.tsx' file.
-   - Import the 'Welcome' component from the 'welcome.dashboard.tsx' file:
+   - Import the 'Welcome' component from the 'dashboard.welcome.tsx' file:
 
      ```tsx
      // src/app.router.tsx
      import { createBrowserRouter } from 'react-router-dom';
-     import { Welcome } from './pages/dashboard/welcome.dashboard';
+     import Welcome from './pages/dashboard/dashboard.welcome';
 
      const routes = [
        {
@@ -52,7 +58,7 @@
      ```tsx
      // src/app.router.tsx
      import { createBrowserRouter } from 'react-router-dom';
-     import { Welcome } from './pages/dashboard/welcome.dashboard';
+     import Welcome from './pages/dashboard/dashboard.welcome';
 
      const routes = [
        {
