@@ -1,4 +1,4 @@
-# Splitting Router Into Mulitple Nested Routes
+# Splits Router Into Mulitple Nested Routes
 
 ## 1. Create Auth Route
 

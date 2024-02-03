@@ -1,12 +1,16 @@
-import { lazy } from 'react';
+import { FC, lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import { Layout } from '@/app.layout';
+import { ContextProps } from '@/types';
 
 const Login = lazy(() => import('./login/login.form'));
 const NotFound = lazy(() => import('../page.not-found'));
 
-function AuthRoute() {
+interface IProps {
+  layout: FC<ContextProps & { component: FC<ContextProps> }>;
+}
+
+function AuthRoute({ layout: Layout }: IProps) {
   const routes = useRoutes([
     {
       path: '/login',

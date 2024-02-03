@@ -9,9 +9,11 @@ app.component.tsx
 |   |-- pages/auth/auth.route.tsx
 |   |   |-- app.layout.tsx
 |   |   |-- pages/auth/login/login.form.tsx
+|   |   |-- pages/page.not-found.tsx
 |   |-- pages/dashboard/dashboard.route.tsx
 |   |   |-- app.layout.tsx
 |   |   |-- pages/dashboard/dashboard.welcome.tsx
+|   |   |-- pages/page.not-found.tsx
 ```
 
-![app_graph_5](images/app.graph_5.png)
+![app_graph_6](../_images/app.graph_6.png)

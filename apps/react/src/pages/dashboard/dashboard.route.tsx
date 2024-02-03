@@ -1,22 +1,18 @@
-import { lazy } from 'react';
+import { FC, lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import { Layout } from '@/app.layout';
-import NotFound from '../page.not-found';
-
+import { ContextProps } from '@/types';
 const Welcome = lazy(() => import('./dashboard.welcome'));
 
-function DashboardRoute() {
+interface IProps {
+  layout: FC<ContextProps & { component: FC<ContextProps> }>;
+}
+
+function DashboardRoute({ layout: Layout }: IProps) {
   const routes = useRoutes([
     {
       path: '/',
       element: <Layout module='dashboard' view='welcome' component={Welcome} />,
-    },
-    {
-      path: '*',
-      element: (
-        <Layout module='dashboard' view='notfound' component={NotFound} />
-      ),
     },
   ]);
 

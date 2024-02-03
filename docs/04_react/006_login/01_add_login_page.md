@@ -4,6 +4,7 @@
 
    - Open your terminal.
    - Change to the 'pages' folder using the `cd` command:
+
      ```bash
      cd src/pages
      ```
@@ -19,6 +20,7 @@
         ```
 
      2. Inside the 'auth' folder, create a 'login' folder using the `mkdir` command:
+
         ```bash
         mkdir auth/login
         ```

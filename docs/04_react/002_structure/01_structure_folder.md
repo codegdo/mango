@@ -44,4 +44,14 @@ contexts/: For React context providers.
 helpers/: To store utility/helper functions.
 pages/: For React components that represent different pages/routes of your application.
 
+```plaintext
+src/
+|-- assets/
+|-- components/
+|-- store/
+|-- hooks/
+|-- contexts/
+|-- pages/
+```
+
 Adjust this structure based on your specific project needs and feel free to add subfolders or further organize the contents within each directory.
