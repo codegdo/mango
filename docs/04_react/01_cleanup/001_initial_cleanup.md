@@ -1,6 +1,6 @@
-# Perform Initial Cleanup:
+# Perform Initial Cleanup
 
-## Remove Unnecessary Files:
+## Remove Unnecessary Files
 
 Navigate to the "src" directory and remove unnecessary files, leaving only "main.tsx" and "vite-env.d.ts."
 

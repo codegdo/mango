@@ -1,10 +1,10 @@
-import { ContextProps } from "../../types";
+import { ContextProps } from '@/types';
 
-interface IProps extends ContextProps { }
+interface IProps extends ContextProps {}
 
 function Welcome(props: IProps) {
   console.log(props);
-  return <>Welcome</>
+  return <>Welcome</>;
 }
 
 export default Welcome;

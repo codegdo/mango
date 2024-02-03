@@ -1,3 +1,5 @@
+# Update Vite Config Setting
+
 Locate the vite.config.ts file in the root directory of your Vite project.
 
 Open the vite.config.ts file for editing.
@@ -29,6 +31,24 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 ```
 
 Save the changes to the vite.config.ts file.
+
+## Update tsconfig.json
+
+Locate the tsconfig.json file in the root directory of your Vite project.
+
+Open the tsconfig.json file for editing.
+
+In 'compilerOptions' add baseUrl and paths:
+
+```json
+/* Path */
+"baseUrl": ".",
+"paths": {
+  "@/*": ["src/*"]
+}
+```
+
+## Fix Types
 
 To fix a typing complaint by installing the @types/node package. Here's the correct command:
 

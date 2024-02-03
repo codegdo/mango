@@ -1,4 +1,4 @@
-# Refactor Router with Nested Routes
+# Splitting Router Into Mulitple Nested Routes
 
 ## 1. Create Auth Route
 
