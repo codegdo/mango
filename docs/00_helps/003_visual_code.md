@@ -1,0 +1,3 @@
+# Extension
+
+Prettier - Code formatter

@@ -9,7 +9,11 @@ function AuthRoute() {
   const routes = useRoutes([
     {
       path: '/login',
-      element: <Layout module="auth" view="login" component={Login} />
+      element: <Layout module='auth' view='login' component={Login} />
+    },
+    {
+      path: '*',
+      element: <div>NOT FOUND</div>
     }
   ]);
 

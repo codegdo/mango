@@ -7,7 +7,7 @@ interface IProps extends ContextProps {
 
 export function Layout({ component: Component, ...props }: IProps) {
   return (
-    <Suspense fallback={'...loading'}>
+    <Suspense fallback={"...loading"}>
       <Component {...props} />
     </Suspense>
   );

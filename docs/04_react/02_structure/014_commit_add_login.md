@@ -1,11 +1,11 @@
-# Summary of Updates:
+# Summary of Updates
 
-## 1. Added Login Page (`login.form.tsx`):
+## 1. Added Login Page (`login.form.tsx`)
 
 - Created a new file named `login.form.tsx` within the 'auth' folder.
 - Implemented the `Login` component in this file.
 
-## 2. Updated App Guard (`app.guard.tsx`):
+## 2. Updated App Guard (`app.guard.tsx`)
 
 - Enhanced the `Guard` component with an `isAuthenticated` boolean.
 - Used `useEffect` to check authentication status (`!isAuthenticated`) and redirect to '/login' if necessary.

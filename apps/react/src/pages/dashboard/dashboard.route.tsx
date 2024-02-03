@@ -8,8 +8,8 @@ const Welcome = lazy(() => import('./dashboard.welcome'));
 function DashboardRoute() {
   const routes = useRoutes([
     {
-      path: '/*',
-      element: <Layout module="dashboard" component={Welcome} />
+      path: '/',
+      element: <Layout module='dashboard' view='welcome' component={Welcome} />
     }
   ]);
 
