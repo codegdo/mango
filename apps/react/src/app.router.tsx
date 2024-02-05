@@ -6,6 +6,7 @@ import { Layout } from './app.layout';
 
 const Welcome = lazy(() => import('./pages/dashboard/dashboard.welcome'));
 const Login = lazy(() => import('./pages/auth/login/login.form'));
+const Signup = lazy(() => import('./pages/auth/signup/signup.form'));
 const WebPage = lazy(() => import('./pages/page.webpage'));
 
 const routes = [
@@ -26,6 +27,10 @@ const routes = [
       {
         path: '/login',
         element: <Layout module='auth' view='login' component={Login} />,
+      },
+      {
+        path: '/signup',
+        element: <Layout module='auth' view='login' component={Signup} />,
       },
     ],
   },
