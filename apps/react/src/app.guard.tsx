@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-export function Guard() {
-  const isAuthenticated = true;
+export function AppGuard() {
+  const isAuthenticated = false;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,8 +19,8 @@ export function Guard() {
   return <Outlet />;
 }
 
-export function Auth() {
-  const isAuthenticated = true;
+export function AuthGuard() {
+  const isAuthenticated = false;
   const navigate = useNavigate();
 
   useEffect(() => {

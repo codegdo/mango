@@ -1,15 +1,16 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { Auth, Guard } from './app.guard';
+
+import { AppGuard, AuthGuard } from './app.guard';
 import { Layout } from './app.layout';
 
 const Welcome = lazy(() => import('./pages/dashboard/dashboard.welcome'));
 const Login = lazy(() => import('./pages/auth/login/login.form'));
-const NotFound = lazy(() => import('./pages/page.not-found'));
+const WebPage = lazy(() => import('./pages/page.webpage'));
 
 const routes = [
   {
-    element: <Guard />,
+    element: <AppGuard />,
     children: [
       {
         path: '/welcome',
@@ -20,7 +21,7 @@ const routes = [
     ],
   },
   {
-    element: <Auth />,
+    element: <AuthGuard />,
     children: [
       {
         path: '/login',
@@ -30,7 +31,7 @@ const routes = [
   },
   {
     path: '*',
-    element: <Layout module='auth' view='notfound' component={NotFound} />,
+    element: <Layout module='webpage' view='*' component={WebPage} />,
   },
 ];
 
