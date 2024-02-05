@@ -18,3 +18,21 @@ export function Guard() {
 
   return <Outlet />;
 }
+
+export function Auth() {
+  const isAuthenticated = true;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/welcome');
+    }
+
+    // Cleanup function to prevent navigation after component unmounts
+    return () => {
+      // Any cleanup code if needed
+    };
+  }, [isAuthenticated, navigate]);
+
+  return <Outlet />;
+}

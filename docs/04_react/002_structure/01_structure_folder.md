@@ -42,6 +42,7 @@ store/: For managing state using state management libraries like Redux.
 hooks/: For custom React hooks.
 contexts/: For React context providers.
 helpers/: To store utility/helper functions.
+layouts/: Stores layout templates to structure the visual framework.
 pages/: For React components that represent different pages/routes of your application.
 
 ```plaintext
@@ -51,6 +52,7 @@ src/
 |-- store/
 |-- hooks/
 |-- contexts/
+|-- layouts/
 |-- pages/
 ```
 

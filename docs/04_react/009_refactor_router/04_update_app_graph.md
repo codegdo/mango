@@ -14,7 +14,6 @@ app.component.tsx
 |   |-- pages/auth/auth.route.tsx
 |   |   |-- pages/auth/login/login.form.tsx
 |   |   |-- pages/page.not-found.tsx
-
 ```
 
 ![app_graph_7](../_images/app.graph_7.png)

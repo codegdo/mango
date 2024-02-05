@@ -11,7 +11,7 @@ interface IProps {
 function DashboardRoute({ layout: Layout }: IProps) {
   const routes = useRoutes([
     {
-      path: '/',
+      path: '/welcome',
       element: <Layout module='dashboard' view='welcome' component={Welcome} />,
     },
   ]);

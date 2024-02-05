@@ -16,6 +16,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       alias: {
         '@': path.resolve(__dirname, './src'),
         '@Types': path.resolve(__dirname, './src/types'),
+        '@Layouts': path.resolve(__dirname, './src/layouts'),
+        '@Pages': path.resolve(__dirname, './src/pages'),
       },
     },
   };

@@ -1,26 +1,36 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
-import { Guard } from './app.guard';
+import { lazy } from 'react';
+import { createBrowserRouter } from 'react-router-dom';
+import { Auth, Guard } from './app.guard';
 import { Layout } from './app.layout';
-import AuthRoute from './pages/auth/auth.route';
-import DashboardRoute from './pages/dashboard/dashboard.route';
+
+const Welcome = lazy(() => import('./pages/dashboard/dashboard.welcome'));
+const Login = lazy(() => import('./pages/auth/login/login.form'));
+const NotFound = lazy(() => import('./pages/page.not-found'));
 
 const routes = [
   {
     element: <Guard />,
     children: [
       {
-        path: '/',
-        element: <Navigate to='dashboard' replace />,
+        path: '/welcome',
+        element: (
+          <Layout module='dashboard' view='welcome' component={Welcome} />
+        ),
       },
+    ],
+  },
+  {
+    element: <Auth />,
+    children: [
       {
-        path: 'dashboard',
-        element: <DashboardRoute layout={Layout} />,
+        path: '/login',
+        element: <Layout module='auth' view='login' component={Login} />,
       },
     ],
   },
   {
     path: '*',
-    element: <AuthRoute layout={Layout} />,
+    element: <Layout module='auth' view='notfound' component={NotFound} />,
   },
 ];
 
