@@ -2,7 +2,7 @@ import { FC, lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
 
 import { ContextProps } from '@/types';
-const Welcome = lazy(() => import('./dashboard.welcome'));
+const Welcome = lazy(() => import('./dashboard.index'));
 
 interface IProps {
   layout: FC<ContextProps & { component: FC<ContextProps> }>;

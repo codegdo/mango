@@ -1,38 +1,22 @@
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { FC } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+
+const isAuth = false;
 
 export function AppGuard() {
-  const isAuthenticated = false;
-  const navigate = useNavigate();
+  const isAuthenticated = isAuth;
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      //navigate('/login');
-    }
-
-    // Cleanup function to prevent navigation after component unmounts
-    return () => {
-      // Any cleanup code if needed
-    };
-  }, [isAuthenticated, navigate]);
-
-  return <Outlet />;
+  return isAuthenticated ? <Outlet /> : <Navigate to='/login' />;
 }
 
 export function AuthGuard() {
-  const isAuthenticated = false;
-  const navigate = useNavigate();
+  const isAuthenticated = isAuth;
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/welcome');
-    }
-
-    // Cleanup function to prevent navigation after component unmounts
-    return () => {
-      // Any cleanup code if needed
-    };
-  }, [isAuthenticated, navigate]);
-
-  return <Outlet />;
+  return !isAuthenticated ? <Outlet /> : <Navigate to='/dashboard' />;
 }
+
+export const WebPageGuard: FC<{ renderNotFound: () => JSX.Element }> = ({ renderNotFound }) => {
+  const isAuthenticated = isAuth;
+
+  return !isAuthenticated ? <Outlet /> : renderNotFound();
+};

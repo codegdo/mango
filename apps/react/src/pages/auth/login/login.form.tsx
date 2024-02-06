@@ -5,6 +5,7 @@ function Login() {
     <div>
       <p>Login <button type='button'>Login</button></p>
       <Link to='/signup'>Signup</Link>
+      <Link to='/welcome'>Welcome</Link>
     </div>
   );
 }

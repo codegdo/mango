@@ -1,56 +1,28 @@
 import { FC, ReactNode, Suspense, useMemo } from 'react';
-import htmlReactParser, { HTMLReactParserOptions } from 'html-react-parser';
+import htmlReactParser from 'html-react-parser';
 import { ContextProps } from './types';
 import { systemBase } from './layouts';
 
-interface IProps extends ContextProps {
+interface LayoutProps extends ContextProps {
   component: FC<ContextProps>;
 }
 
-export function Layout({ component: Component, ...props }: IProps) {
-  // Assume template is a string representing your HTML template
-  //const template = "<div><div id='jsx_content'></div></div>";
+export const Layout: FC<LayoutProps> = ({ component: Component, ...props }) => {
   const template = systemBase;
 
-  /// Memoize the options objects
-  const mainContentOptions: HTMLReactParserOptions = useMemo(
-    () => ({
+  const generateContentTemplate = (fallback: boolean): ReactNode => {
+    return htmlReactParser(template, {
       replace: (domNode) => {
-        if (domNode && 'attribs' in domNode) {
-          if (domNode.attribs.id === 'jsx_content') {
-            return <Component {...props} />;
-          }
+        if (domNode && 'attribs' in domNode && domNode.attribs.id === 'jsx_content') {
+          return fallback ? <div>...loading</div> : <Component {...props} />;
         }
         return domNode;
       },
-    }),
-    [Component, props]
-  );
+    });
+  };
 
-  // HTMLReactParserOptions for parsing the fallback content
-  const fallbackOptions: HTMLReactParserOptions = useMemo(
-    () => ({
-      replace: (domNode) => {
-        if (domNode && 'attribs' in domNode) {
-          if (domNode.attribs.id === 'jsx_content') {
-            return <div>...loading</div>;
-          }
-        }
-        return domNode;
-      },
-    }),
-    []
-  );
+  const contentTemplate: ReactNode = useMemo(() => generateContentTemplate(false), [Component, props, template]);
+  const fallbackTemplate: ReactNode = useMemo(() => generateContentTemplate(true), [template]);
 
-  // Parse the main content and fallback content separately
-  const parsedTemplate: ReactNode = htmlReactParser(
-    template,
-    mainContentOptions
-  );
-  const fallbackTemplate: ReactNode = htmlReactParser(
-    template,
-    fallbackOptions
-  );
-
-  return <Suspense fallback={fallbackTemplate}>{parsedTemplate}</Suspense>;
-}
+  return <Suspense fallback={fallbackTemplate}>{contentTemplate}</Suspense>;
+};

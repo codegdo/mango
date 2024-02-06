@@ -4,7 +4,7 @@ import { useRoutes } from 'react-router-dom';
 import { ContextProps } from '@/types';
 
 const Login = lazy(() => import('./login/login.form'));
-const NotFound = lazy(() => import('../page.not-found'));
+const NotFound = lazy(() => import('../page.notfound'));
 
 interface IProps {
   layout: FC<ContextProps & { component: FC<ContextProps> }>;
