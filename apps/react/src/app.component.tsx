@@ -1,10 +1,7 @@
-import { RouterProvider } from 'react-router-dom';
-import { router } from './app.router';
+import { Outlet } from 'react-router-dom'
 
-function App() {
-  return <RouterProvider router={router} />;
+export function App() {
+  return <Outlet />
 }
 
-export default App;
-
-// npx madge src/app.component.tsx --image src/app.graph.png --warning
+// npx madge src/app.router.tsx --image src/app.graph.png --warning

@@ -7,7 +7,7 @@ export function AppGuard() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/login');
+      //navigate('/login');
     }
 
     // Cleanup function to prevent navigation after component unmounts
