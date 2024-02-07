@@ -1,11 +1,11 @@
-import { ConfigEnv, defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import { ConfigEnv, defineConfig, loadEnv } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  const env = loadEnv(mode, process.cwd(), '')
 
-  console.log('Port:', env.PORT);
+  console.log('Port:', env.PORT)
 
   return {
     plugins: [react()],
@@ -18,7 +18,8 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         '@Types': path.resolve(__dirname, './src/types'),
         '@Layouts': path.resolve(__dirname, './src/layouts'),
         '@Pages': path.resolve(__dirname, './src/pages'),
+        '@Stores': path.resolve(__dirname, './src/stores'),
       },
     },
-  };
-});
+  }
+})
