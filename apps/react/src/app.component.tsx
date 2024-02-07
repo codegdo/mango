@@ -1,11 +1,13 @@
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom'
+import { AppState } from './stores';
 
 export interface ContextProps {
   isAuthenticated: boolean;
 }
 
 export function App() {
-  const isAuthenticated: boolean = false;
+  const { isAuthenticated } = useSelector((state: AppState) => state.session);
   const context: ContextProps = { isAuthenticated };
 
   return <Outlet context={context} />;

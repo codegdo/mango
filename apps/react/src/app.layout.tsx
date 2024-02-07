@@ -10,7 +10,7 @@ interface LayoutProps extends ContextProps {
 export const Layout: FC<LayoutProps> = ({ component: Component, ...props }) => {
   const template = systemBase;
 
-  const generateContentTemplate = (fallback: boolean): ReactNode => {
+  const generateTemplate = (fallback: boolean): ReactNode => {
     return htmlReactParser(template, {
       replace: (domNode) => {
         if (domNode && 'attribs' in domNode && domNode.attribs.id === 'jsx_content') {
@@ -21,8 +21,8 @@ export const Layout: FC<LayoutProps> = ({ component: Component, ...props }) => {
     });
   };
 
-  const contentTemplate: ReactNode = useMemo(() => generateContentTemplate(false), [Component, props, template]);
-  const fallbackTemplate: ReactNode = useMemo(() => generateContentTemplate(true), [template]);
+  const contentTemplate: ReactNode = useMemo(() => generateTemplate(false), [Component, props, template]);
+  const fallbackTemplate: ReactNode = useMemo(() => generateTemplate(true), [template]);
 
   return <Suspense fallback={fallbackTemplate}>{contentTemplate}</Suspense>;
 };

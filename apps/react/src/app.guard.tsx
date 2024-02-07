@@ -1,22 +1,22 @@
 import { FC } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useOutletContext } from 'react-router-dom';
+import { ContextProps } from './app.component';
 
-const isAuth = false;
 
 export function AppGuard() {
-  const isAuthenticated = isAuth;
+  const { isAuthenticated } = useOutletContext<ContextProps>();
 
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />;
 }
 
 export function AuthGuard() {
-  const isAuthenticated = isAuth;
+  const { isAuthenticated } = useOutletContext<ContextProps>();
 
   return !isAuthenticated ? <Outlet /> : <Navigate to='/dashboard' />;
 }
 
 export const WebPageGuard: FC<{ renderNotFound: () => JSX.Element }> = ({ renderNotFound }) => {
-  const isAuthenticated = isAuth;
+  const { isAuthenticated } = useOutletContext<ContextProps>();
 
   return !isAuthenticated ? <Outlet /> : renderNotFound();
 };
