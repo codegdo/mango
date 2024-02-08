@@ -56,4 +56,14 @@ To fix a typing complaint by installing the @types/node package. Here's the corr
 npm install --save-dev @types/node
 ```
 
+## Use Single Quote
+
+Edit package.json and add:
+
+```json
+"prettier": {
+  "singleQuote": true
+},
+```
+
 This command installs the TypeScript type declarations for Node.js, which can help resolve typing issues in your project. Make sure to run this command in your project's root directory.

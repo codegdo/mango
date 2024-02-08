@@ -1,7 +1,22 @@
-import { Link } from 'react-router-dom';
+import { useActions } from '@/hooks'
+import { Link } from 'react-router-dom'
 
 function Welcome() {
-  return <div>Welcome <Link to='/login'>Login</Link> <Link to='/somelink'>Some Link</Link></div>;
+  const { logoutSuccess } = useActions()
+
+  const handleClick = () => {
+    logoutSuccess({ session: { isAuthenticated: false } })
+  }
+
+  return (
+    <div>
+      Welcome
+      <button type='button' onClick={handleClick}>
+        Logout
+      </button>
+      <Link to='/somelink'>Some Link</Link>
+    </div>
+  )
 }
 
-export default Welcome;
+export default Welcome
