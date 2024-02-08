@@ -8,7 +8,6 @@ import {
   SessionState,
   sessionState,
   sessionReducer,
-  getSession,
   updateSession,
 } from './session.store'
 
@@ -43,7 +42,7 @@ export const appReducer = createReducer(initialState, (builder) => {
         return { ...state, session: { ...action.payload.session } }
       }
     )
-})
+});
 
 // Combine reducers
 export const combinedReducers = combineReducers({
@@ -54,6 +53,5 @@ export const combinedReducers = combineReducers({
 export const actions = {
   loginSuccess,
   logoutSuccess,
-  getSession,
   updateSession,
 }

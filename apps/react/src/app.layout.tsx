@@ -1,14 +1,24 @@
 import { FC, ReactNode, Suspense, useMemo } from 'react';
 import htmlReactParser from 'html-react-parser';
-import { ContextProps } from './types';
+import { ContextRouteProps } from './types';
 import { systemBase } from './layouts';
+//import { useTitle } from './hooks';
+import { useAddTagToDocumentHeader, useDocumentHeader } from './hooks';
 
-interface LayoutProps extends ContextProps {
-  component: FC<ContextProps>;
+interface LayoutProps extends ContextRouteProps {
+  component: FC<ContextRouteProps>;
 }
 
 export const Layout: FC<LayoutProps> = ({ component: Component, ...props }) => {
   const template = systemBase;
+  const title = props.title || '';
+
+  //useTitle(title);
+
+  // Update the content of the title tag
+  useDocumentHeader('title', (element: Element) => {
+    element.textContent = title;
+  });
 
   const generateTemplate = (fallback: boolean): ReactNode => {
     return htmlReactParser(template, {

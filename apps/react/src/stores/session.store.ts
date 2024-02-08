@@ -6,7 +6,6 @@ export interface SessionState {
 }
 
 // Define actions
-export const getSession = createAction<void>('session/GET')
 export const updateSession = createAction<{ isAuthenticated: boolean }>(
   'session/UPDATE'
 )
@@ -18,7 +17,6 @@ export const sessionState: SessionState = {
 // Define session reducer
 export const sessionReducer = createReducer(sessionState, (builder) => {
   builder
-    .addCase(getSession, (state) => state)
     .addCase(
       updateSession,
       (state, action: PayloadAction<{ isAuthenticated: boolean }>) => {

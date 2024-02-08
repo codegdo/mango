@@ -1,6 +1,8 @@
-export interface ContextProps {
-  module: string;
+export interface ContextRouteProps {
+  name?: string;
+  title?: string;
+  module?: string;
   view?: string;
   object?: string;
-  action?: string[];
+  actions?: string[];
 }

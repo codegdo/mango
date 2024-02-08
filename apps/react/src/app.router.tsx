@@ -29,7 +29,7 @@ const routes = [
           },
           {
             path: '/dashboard',
-            element: <Layout module='dashboard' view='index' component={Dashboard} />,
+            element: <Layout name='dashboard' title='Dashboard' module='dashboard' view='index' component={Dashboard} />,
           },
         ],
       },
@@ -38,16 +38,16 @@ const routes = [
         children: [
           {
             path: '/login',
-            element: <Layout module='auth' view='login' component={Login} />,
+            element: <Layout name='auth_login' title='Login' module='auth' view='login' component={Login} />,
           },
           {
             path: '/signup',
-            element: <Layout module='auth' view='signup' component={Signup} />,
+            element: <Layout name='auth_signup' title='Signup' module='auth' view='signup' component={Signup} />,
           },
         ],
       },
       {
-        element: <WebPageGuard renderNotFound={() => <Layout module='error' view='notfound' component={NotFoundPage} />} />,
+        element: <WebPageGuard renderNotFound={() => <Layout name='page_notfound' title='Not Found' module='error' view='notfound' component={NotFoundPage} />} />,
         children: [
           {
             path: '*',

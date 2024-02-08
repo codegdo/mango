@@ -1,11 +1,11 @@
 import { FC, lazy } from 'react';
 import { useRoutes } from 'react-router-dom';
 
-import { ContextProps } from '@/types';
+import { ContextRouteProps } from '@/types';
 const Welcome = lazy(() => import('./dashboard.index'));
 
 interface IProps {
-  layout: FC<ContextProps & { component: FC<ContextProps> }>;
+  layout: FC<ContextRouteProps & { component: FC<ContextRouteProps> }>;
 }
 
 function DashboardRoute({ layout: Layout }: IProps) {
