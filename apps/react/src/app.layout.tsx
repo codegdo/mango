@@ -3,7 +3,7 @@ import htmlReactParser from 'html-react-parser';
 import { ContextRouteProps } from './types';
 import { systemBase } from './layouts';
 //import { useTitle } from './hooks';
-import { useAddTagToDocumentHeader, useDocumentHeader } from './hooks';
+import { useDocumentHeader } from './hooks';
 
 interface LayoutProps extends ContextRouteProps {
   component: FC<ContextRouteProps>;
