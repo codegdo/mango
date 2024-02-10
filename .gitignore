@@ -43,7 +43,7 @@ dist-ssr
 
 # next.js
 .next/*
-/.next/
+/.next/*
 /out/
 
 # production
