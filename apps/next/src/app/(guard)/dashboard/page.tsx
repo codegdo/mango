@@ -1,6 +1,7 @@
 'use client';
+
 import { Metadata } from 'next';
-import layoutTemplate from '../../layout.template';
+import pageLayout from '../../page.layout';
 
 const metadata: Metadata = { title: 'Dashboard', description: '' };
 
@@ -8,6 +9,6 @@ function Dashboard() {
   return <main>DASHBOARD</main>;
 }
 
-export default layoutTemplate(Dashboard, {
+export default pageLayout(Dashboard, {
   metadata,
 });

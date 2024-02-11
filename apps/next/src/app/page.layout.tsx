@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useLayout } from '@/hooks';
 import Layout, { Params } from './layout';
 
-const layoutTemplate = (
+const pageLayout = (
   Component: React.ComponentType<any>,
   params: Params
 ): React.FC => {
@@ -61,4 +61,4 @@ const extractTextContent = (domNode: DOMNode): string => {
   return '';
 };
 
-export default layoutTemplate;
+export default pageLayout;

@@ -1,6 +1,6 @@
 'use client';
 import { Metadata } from 'next';
-import layoutTemplate from '../../layout.template';
+import pageLayout from '../../page.layout';
 
 const metadata: Metadata = { title: 'Login', description: '' };
 
@@ -8,6 +8,6 @@ function Login() {
   return <main>LOGIN</main>;
 }
 
-export default layoutTemplate(Login, {
+export default pageLayout(Login, {
   metadata,
 });
