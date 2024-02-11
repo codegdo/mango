@@ -6,7 +6,7 @@ import pageLayout from '../../page.layout';
 const metadata: Metadata = { title: 'Dashboard', description: '' };
 
 function Dashboard() {
-  return <main>DASHBOARD</main>;
+  return <>DASHBOARD</>;
 }
 
 export default pageLayout(Dashboard, {

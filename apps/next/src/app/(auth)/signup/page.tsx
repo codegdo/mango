@@ -5,7 +5,7 @@ import pageLayout from '../../page.layout';
 const metadata: Metadata = { title: 'Signup', description: '' };
 
 function Signup() {
-  return <main>SIGNUP</main>;
+  return <>SIGNUP</>;
 }
 
 export default pageLayout(Signup, {
