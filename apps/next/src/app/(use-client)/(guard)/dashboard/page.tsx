@@ -11,4 +11,5 @@ function Dashboard() {
 
 export default pageLayout(Dashboard, {
   metadata,
+  module: 'dashboard',
 });

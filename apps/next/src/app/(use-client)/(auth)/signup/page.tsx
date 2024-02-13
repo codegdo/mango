@@ -10,4 +10,5 @@ function Signup() {
 
 export default pageLayout(Signup, {
   metadata,
+  module: 'auth',
 });

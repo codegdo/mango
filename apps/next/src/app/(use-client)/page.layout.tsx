@@ -1,21 +1,18 @@
+'use client';
 import React from 'react';
 import htmlReactParser, { DOMNode } from 'html-react-parser';
 import Link from 'next/link';
 
-import Layout, { Params } from './layout';
+import { useLayout } from '@/hooks';
+import Layout, { Params } from '../layout';
+import { ButtonLogout } from '@/components';
 
 const pageLayout = (
   Component: React.ComponentType<any>,
   params: Params
 ): React.FC => {
   const WrappedComponent: React.FC = (props) => {
-    const layoutContent = `<div>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/login">Login</a>
-      </nav>
-      <div id="jsx_content"></div>
-    </div>`;
+    const layoutContent = useLayout(params);
 
     const parsedContent = htmlReactParser(layoutContent, {
       replace: (domNode) => {
@@ -31,7 +28,11 @@ const pageLayout = (
           const href = domNode.attribs.href || '';
           const textContent = extractTextContent(domNode);
 
-          return <Link href={href}>{textContent}</Link>;
+          return href === '/logout' ? (
+            <ButtonLogout />
+          ) : (
+            <Link href={href}>{textContent}</Link>
+          );
         }
 
         if (
