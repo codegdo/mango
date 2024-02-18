@@ -1,8 +1,7 @@
 'use client';
-
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import { AppState } from '@/stores';
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -4,8 +4,8 @@ import htmlReactParser, { DOMNode } from 'html-react-parser';
 import Link from 'next/link';
 
 import { useLayout } from '@/hooks';
-import Layout, { Params } from '../layout';
 import { ButtonLogout } from '@/components';
+import Layout, { Params } from '../layout';
 
 const pageLayout = (
   Component: React.ComponentType<any>,

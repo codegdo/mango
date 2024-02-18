@@ -1,3 +1,4 @@
+'use-client';
 import React from 'react';
 import htmlReactParser, { DOMNode } from 'html-react-parser';
 import Link from 'next/link';
