@@ -2,9 +2,14 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import pageLayout from '../page.layout';
-import { usePathname } from 'next/navigation';
+import {
+  notFound,
+  usePathname,
+  useSelectedLayoutSegment,
+} from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { AppState } from '@/stores';
+import { useEffect } from 'react';
 
 const metadata: Metadata = { title: 'Not Found', description: '' };
 
@@ -12,8 +17,15 @@ function NotFound() {
   const { isAuthenticated } = useSelector((state: AppState) => state.session);
   const type = typeof window !== 'undefined' ? 'Client' : 'Server';
   const currentPage = usePathname();
+  const segment = useSelectedLayoutSegment();
 
-  console.log(type, currentPage, isAuthenticated);
+  console.log(type, currentPage, isAuthenticated, segment);
+
+  useEffect(() => {
+    if (currentPage === '/abc') {
+      notFound();
+    }
+  }, [currentPage]);
 
   return (
     <div>

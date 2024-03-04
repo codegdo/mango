@@ -25,4 +25,5 @@ function Login() {
 
 export default pageLayout(Login, {
   metadata,
+  module: 'auth',
 });

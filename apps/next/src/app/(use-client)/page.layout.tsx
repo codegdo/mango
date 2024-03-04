@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useLayout } from '@/hooks';
 import { ButtonLogout } from '@/components';
 import Layout, { Params } from '../layout';
+import { usePathname } from 'next/navigation';
 
 const pageLayout = (
   Component: React.ComponentType<any>,
@@ -13,6 +14,7 @@ const pageLayout = (
 ): React.FC => {
   const WrappedComponent: React.FC = (props) => {
     const layoutContent = useLayout(params);
+    const currentPage = usePathname();
 
     const parsedContent = htmlReactParser(layoutContent, {
       replace: (domNode) => {
@@ -46,6 +48,8 @@ const pageLayout = (
         return domNode;
       },
     });
+
+    console.log('PAGE LAYOUT', currentPage);
 
     return <Layout params={params}>{parsedContent}</Layout>;
   };
