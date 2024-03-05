@@ -5,15 +5,21 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit'
 import {
+  sessionReducer,
   SessionState,
   sessionState,
-  sessionReducer,
   updateSession,
 } from './session.store'
+import {
+  layoutReducer,
+  LayoutState,
+  layoutState
+} from './layout.store'
 
 // Define initial app state
 export interface AppState {
-  session: SessionState
+  session: SessionState,
+  layout: LayoutState
 }
 
 // Define actions
@@ -25,6 +31,7 @@ export const logoutSuccess = createAction<{ session: SessionState }>(
 
 const initialState: AppState = {
   session: sessionState,
+  layout: layoutState
 }
 
 // Define app reducer
@@ -47,6 +54,7 @@ export const appReducer = createReducer(initialState, (builder) => {
 // Combine reducers
 export const combinedReducers = combineReducers({
   session: sessionReducer,
+  layout: layoutReducer
 })
 
 // Actions

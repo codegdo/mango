@@ -1,9 +1,6 @@
-export const systemBase = `
+export const dashboard = `
   <div>
-    <header>
-      <div>SYSTEM</div>
-      ...
-    </header>
+    <header>DASHBOARD</header>
     <main>
       <div id='jsx_content'></div>
     </main>

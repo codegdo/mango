@@ -47,7 +47,7 @@ const routes = [
         ],
       },
       {
-        element: <WebPageGuard renderNotFound={() => <Layout name='page_notfound' title='Not Found' module='error' view='notfound' component={NotFoundPage} />} />,
+        element: <WebPageGuard renderNotFound={() => <Layout module='notfound' view='*' component={NotFoundPage} />} />,
         children: [
           {
             path: '*',

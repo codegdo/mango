@@ -1,24 +1,25 @@
 import { FC, ReactNode, Suspense, useMemo } from 'react';
 import htmlReactParser from 'html-react-parser';
 import { ContextRouteProps } from './types';
-import { systemBase } from './layouts';
-//import { useTitle } from './hooks';
-import { useDocumentHeader } from './hooks';
+
+import { useLayout, useTitle } from './hooks';
+//import { useDocumentHeader, useTitle } from './hooks';
 
 interface LayoutProps extends ContextRouteProps {
   component: FC<ContextRouteProps>;
 }
 
-export const Layout: FC<LayoutProps> = ({ component: Component, ...props }) => {
-  const template = systemBase;
+export function Layout({ component: Component, ...props }: LayoutProps) {
+
   const title = props.title || '';
 
-  //useTitle(title);
+  useTitle(title);
+  const template = useLayout({ module: props.module, view: props.view });
 
   // Update the content of the title tag
-  useDocumentHeader('title', (element: Element) => {
-    element.textContent = title;
-  });
+  // useDocumentHeader('title', (element: Element) => {
+  //   element.textContent = title;
+  // });
 
   const generateTemplate = (fallback: boolean): ReactNode => {
     return htmlReactParser(template, {
@@ -35,4 +36,4 @@ export const Layout: FC<LayoutProps> = ({ component: Component, ...props }) => {
   const fallbackTemplate: ReactNode = useMemo(() => generateTemplate(true), [template]);
 
   return <Suspense fallback={fallbackTemplate}>{contentTemplate}</Suspense>;
-};
+}
