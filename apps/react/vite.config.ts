@@ -19,6 +19,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         '@Layouts': path.resolve(__dirname, './src/layouts'),
         '@Pages': path.resolve(__dirname, './src/pages'),
         '@Stores': path.resolve(__dirname, './src/stores'),
+        '@Helpers': path.resolve(__dirname, './src/helpers'),
       },
     },
   }

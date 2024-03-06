@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { AppState } from "@/stores";
 import { layoutHelper } from "@/helpers";
-import defaultLayout from '../layouts';
+import defaultLayout from '@/layouts';
 
 interface Param {
   module?: string;
