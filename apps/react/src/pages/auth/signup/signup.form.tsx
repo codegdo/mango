@@ -6,7 +6,7 @@ function Signup() {
     <div>
       <p>Signup</p>
       <Link to='/login'>Login</Link>
-      <Link to='/nofound'>Not Found</Link>
+      <Link to='/notfound'>Not Found</Link>
     </div>
   );
 }

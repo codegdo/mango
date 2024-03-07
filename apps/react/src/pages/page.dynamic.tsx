@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-function WebPage() {
+function DynamicPage() {
   return (
     <div>
-      <p>WebPage</p>
+      <p>DynamicPage</p>
       <Link to='/login'>Login</Link>
       <Link to='/signup'>Signup</Link>
     </div>
   );
 }
 
-export default WebPage;
+export default DynamicPage;

@@ -1,12 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 import { AppState } from './stores';
 import { utils } from './helpers';
-import { useEffect } from 'react';
 
-export interface ContextOutletProps {
-  isAuthenticated: boolean;
-}
+import { ContextOutletProps } from './types';
 
 export function App() {
   const { isAuthenticated } = useSelector((state: AppState) => state.session);
@@ -14,10 +12,12 @@ export function App() {
   const subdomain = utils.getSubdomain();
 
   useEffect(() => {
-    console.log(subdomain);
-  }, [subdomain]);
+    if (!isAuthenticated) {
+      console.log(subdomain);
+    }
+  }, [subdomain, isAuthenticated]);
 
   return <Outlet context={context} />;
 }
 
-// npx madge src/app.router.tsx --image src/app.graph.png --warning
+

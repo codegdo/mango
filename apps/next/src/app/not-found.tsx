@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import pageLayout from './page.layout';
 import { Metadata } from 'next';
 
 const metadata: Metadata = { title: 'Not Found', description: '' };
@@ -16,6 +15,4 @@ function NotFound() {
   );
 }
 
-export default pageLayout(NotFound, {
-  metadata,
-});
+export default NotFound;

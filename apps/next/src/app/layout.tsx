@@ -1,39 +1,27 @@
 import type { Metadata } from 'next';
 //import { Inter } from 'next/font/google';
 
+import TemplateProvider from './template.provider';
+
 //const inter = Inter({ subsets: ['latin'] });
 
-export interface Params {
-  metadata?: Metadata;
-  module?: string;
-}
-
-interface LayoutProps {
+interface IProps {
   children: React.ReactNode;
-  params?: Params;
 }
 
-export default function RootLayout({
-  children,
-  params = {},
-}: Readonly<LayoutProps>) {
-  const { metadata } = params;
-  const title =
-    typeof metadata?.title === 'string' ? metadata?.title : 'Default Title';
+export const metadata: Metadata = {
+  title: 'Mango',
+  description: '...',
+}
 
-  console.log('ROOTLAYOUT', params);
-
-  if (!metadata) {
-    return <>{children}</>;
-  }
-
+export default function RootLayout({ children }: IProps) {
   return (
     <html lang='en'>
-      <head>
-        <title>{title}</title>
-        {/* Add other meta tags, styles, scripts, etc. */}
-      </head>
-      <body cz-shortcut-listen='true'>{children}</body>
+      <body cz-shortcut-listen='true'>
+        <TemplateProvider>
+          {children}
+        </TemplateProvider>
+      </body>
     </html>
   );
 }

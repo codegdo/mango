@@ -1,20 +1,26 @@
 'use client';
 import React from 'react';
-import htmlReactParser, { DOMNode } from 'html-react-parser';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import htmlReactParser, { DOMNode } from 'html-react-parser';
 
 import { useLayout } from '@/hooks';
 import { ButtonLogout } from '@/components';
-import Layout, { Params } from '../layout';
-import { usePathname } from 'next/navigation';
 
-const pageLayout = (
-  Component: React.ComponentType<any>,
-  params: Params
+
+interface Options {
+  module?: string;
+  view?: string;
+}
+
+const templateLayout = (
+  Component: React.FC<any>,
+  options: Options
 ): React.FC => {
-  const WrappedComponent: React.FC = (props) => {
-    const layoutContent = useLayout(params);
-    const currentPage = usePathname();
+
+  const Template: React.FC = (props) => {
+    const layoutContent = useLayout(options);
+    //const currentPage = usePathname();
 
     const parsedContent = htmlReactParser(layoutContent, {
       replace: (domNode) => {
@@ -23,7 +29,7 @@ const pageLayout = (
           'attribs' in domNode &&
           domNode.attribs.id === 'jsx_content'
         ) {
-          return <Component {...props} />;
+          return <Component {...props} {...options} />;
         }
 
         if (domNode && 'attribs' in domNode && domNode.name === 'a') {
@@ -49,12 +55,10 @@ const pageLayout = (
       },
     });
 
-    console.log('PAGE LAYOUT', currentPage);
-
-    return <Layout params={params}>{parsedContent}</Layout>;
+    return <>{parsedContent}</>;
   };
 
-  return WrappedComponent;
+  return Template;
 };
 
 // Helper function to get text content safely
@@ -71,4 +75,4 @@ const extractTextContent = (domNode: DOMNode): string => {
   return '';
 };
 
-export default pageLayout;
+export default templateLayout;

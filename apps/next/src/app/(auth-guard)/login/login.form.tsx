@@ -1,13 +1,14 @@
 'use client';
-import { Metadata } from 'next';
-import pageLayout from '../../page.layout';
 import { Form } from '@/components';
 import { useActions } from '@/hooks';
+import templateLayout from '../../template.layout';
 
-const metadata: Metadata = { title: 'Login', description: '' };
+interface IProps { }
 
-function Login() {
+function Login(props: IProps) {
   const { loginSuccess } = useActions();
+
+  console.log('LOGIN', props);
 
   const handleClick = () => {
     loginSuccess({ session: { isAuthenticated: true } });
@@ -23,7 +24,6 @@ function Login() {
   );
 }
 
-export default pageLayout(Login, {
-  metadata,
+export default templateLayout(Login, {
   module: 'auth',
 });

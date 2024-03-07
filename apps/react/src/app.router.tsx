@@ -2,13 +2,13 @@ import { lazy } from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { App } from './app.component';
-import { AppGuard, AuthGuard, WebPageGuard } from './app.guard';
+import { AppGuard, AuthGuard, PageGuard } from './app.guard';
 import { Layout } from './app.layout';
 
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard.index'));
 const Login = lazy(() => import('./pages/auth/login/login.form'));
 const Signup = lazy(() => import('./pages/auth/signup/signup.form'));
-const WebPage = lazy(() => import('./pages/page.webpage'));
+const DynamicPage = lazy(() => import('./pages/page.dynamic'));
 const ErrorPage = lazy(() => import('./pages/page.error'));
 const NotFoundPage = lazy(() => import('./pages/page.notfound'));
 
@@ -47,11 +47,11 @@ const routes = [
         ],
       },
       {
-        element: <WebPageGuard renderNotFound={() => <Layout module='notfound' view='*' component={NotFoundPage} />} />,
+        element: <PageGuard notFound={() => <Layout module='notfound' view='*' component={NotFoundPage} />} />,
         children: [
           {
             path: '*',
-            element: <Layout module='webpage' view='*' component={WebPage} />,
+            element: <Layout module='content' view='*' component={DynamicPage} />,
           },
         ],
       },
@@ -60,3 +60,5 @@ const routes = [
 ];
 
 export const router = createBrowserRouter(routes);
+
+// npx madge src/app.router.tsx --image src/app.graph.png --warning

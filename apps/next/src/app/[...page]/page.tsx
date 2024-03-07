@@ -1,7 +1,7 @@
 'use client';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import pageLayout from '../page.layout';
+import pageLayout from '../template.layout';
 import {
   notFound,
   usePathname,
@@ -36,6 +36,8 @@ function NotFound() {
   );
 }
 
-export default pageLayout(NotFound, {
-  metadata,
-});
+export default NotFound;
+
+// export default pageLayout(NotFound, {
+//   metadata,
+// });

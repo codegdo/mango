@@ -6,3 +6,7 @@ export interface ContextRouteProps {
   object?: string;
   actions?: string[];
 }
+
+export interface ContextOutletProps {
+  isAuthenticated: boolean;
+}

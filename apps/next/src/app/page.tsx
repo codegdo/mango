@@ -1,12 +1,12 @@
+import React from 'react';
 import { Metadata } from 'next';
-import pageLayout from './page.layout';
+import Home from './home.page';
 
-const metadata: Metadata = { title: 'Home', description: '' };
+export const metadata: Metadata = {
+  title: 'Home',
+  description: ''
+};
 
-function Home() {
-  return <>HOME</>;
-}
+const HomePage: React.FC = () => <Home />;
 
-export default pageLayout(Home, {
-  metadata,
-});
+export default HomePage;
