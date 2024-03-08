@@ -1,9 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { Metadata } from 'next';
-
-const metadata: Metadata = { title: 'Not Found', description: '' };
 
 function NotFound() {
   return (

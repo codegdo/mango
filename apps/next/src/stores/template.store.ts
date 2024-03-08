@@ -1,22 +1,22 @@
 import { PayloadAction, createAction, createReducer } from '@reduxjs/toolkit';
 
 // Define initial state
-export interface LayoutState {
+export interface TemplateState {
   [key: string]: string
 }
 
 // Define actions
-export const updateLayout = createAction<{ base: string }>(
-  'layout/UPDATE'
+export const updateTemplate = createAction<{ base: string }>(
+  'template/UPDATE'
 )
 
-export const layoutState: LayoutState = {}
+export const templateState: TemplateState = {}
 
 // Define session reducer
-export const layoutReducer = createReducer(layoutState, (builder) => {
+export const templateReducer = createReducer(templateState, (builder) => {
   builder
     .addCase(
-      updateLayout,
+      updateTemplate,
       (state, action: PayloadAction<{ base: string }>) => {
         return { ...state, base: action.payload.base }
       }

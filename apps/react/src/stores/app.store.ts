@@ -11,15 +11,15 @@ import {
   updateSession,
 } from './session.store'
 import {
-  layoutReducer,
-  LayoutState,
-  layoutState
-} from './layout.store'
+  templateReducer,
+  TemplateState,
+  templateState
+} from './template.store'
 
 // Define initial app state
 export interface AppState {
   session: SessionState,
-  layout: LayoutState
+  template: TemplateState
 }
 
 // Define actions
@@ -31,7 +31,7 @@ export const logoutSuccess = createAction<{ session: SessionState }>(
 
 const initialState: AppState = {
   session: sessionState,
-  layout: layoutState
+  template: templateState
 }
 
 // Define app reducer
@@ -54,7 +54,7 @@ export const appReducer = createReducer(initialState, (builder) => {
 // Combine reducers
 export const combinedReducers = combineReducers({
   session: sessionReducer,
-  layout: layoutReducer
+  template: templateReducer
 })
 
 // Actions

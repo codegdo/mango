@@ -7,19 +7,18 @@ import htmlReactParser, { DOMNode } from 'html-react-parser';
 import { useLayout } from '@/hooks';
 import { ButtonLogout } from '@/components';
 
-
-interface Options {
+interface Params {
   module?: string;
   view?: string;
 }
 
 const templateLayout = (
   Component: React.FC<any>,
-  options: Options
+  params: Params
 ): React.FC => {
 
   const Template: React.FC = (props) => {
-    const layoutContent = useLayout(options);
+    const layoutContent = useLayout(params);
     //const currentPage = usePathname();
 
     const parsedContent = htmlReactParser(layoutContent, {
@@ -29,7 +28,7 @@ const templateLayout = (
           'attribs' in domNode &&
           domNode.attribs.id === 'jsx_content'
         ) {
-          return <Component {...props} {...options} />;
+          return <Component {...props} {...params} />;
         }
 
         if (domNode && 'attribs' in domNode && domNode.name === 'a') {

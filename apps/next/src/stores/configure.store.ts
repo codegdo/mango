@@ -10,3 +10,5 @@ export const store = configureStore({
   reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production',
 });
+
+// npx madge src/stores/configure.store.ts --image src/stores/store.graph.png --warning
