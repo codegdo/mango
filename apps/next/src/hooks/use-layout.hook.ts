@@ -1,7 +1,11 @@
 'use client';
-import { Params } from '@/app/layout';
+
 import { AppState } from '@/stores';
 import { useSelector } from 'react-redux';
+
+interface Params {
+  module?: string
+}
 
 export const useLayout = ({ module }: Params) => {
   const session = useSelector((state: AppState) => state.session);
