@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import htmlReactParser, { DOMNode } from 'html-react-parser';
 
-import { useLayout } from '@/hooks';
+import { useTemplate } from '@/hooks';
 import { ButtonLogout } from '@/components';
 
 interface Params {
@@ -12,23 +12,25 @@ interface Params {
   view?: string;
 }
 
+interface ComponentProps extends Params { }
+
 const templateLayout = (
-  Component: React.FC<any>,
+  Component: React.FC<ComponentProps>,
   params: Params
 ): React.FC => {
 
-  const Template: React.FC = (props) => {
-    const layoutContent = useLayout(params);
+  const Template: React.FC = () => {
+    const templateContent = useTemplate(params);
     //const currentPage = usePathname();
 
-    const parsedContent = htmlReactParser(layoutContent, {
+    const parsedContent = htmlReactParser(templateContent, {
       replace: (domNode) => {
         if (
           domNode &&
           'attribs' in domNode &&
           domNode.attribs.id === 'jsx_content'
         ) {
-          return <Component {...props} {...params} />;
+          return <Component {...params} />;
         }
 
         if (domNode && 'attribs' in domNode && domNode.name === 'a') {
@@ -42,13 +44,13 @@ const templateLayout = (
           );
         }
 
-        if (
-          domNode &&
-          'attribs' in domNode &&
-          domNode.attribs['cz-shortcut-listen']
-        ) {
-          delete domNode.attribs['cz-shortcut-listen']; // Remove the attribute
-        }
+        // if (
+        //   domNode &&
+        //   'attribs' in domNode &&
+        //   domNode.attribs['cz-shortcut-listen']
+        // ) {
+        //   delete domNode.attribs['cz-shortcut-listen']; // Remove the attribute
+        // }
 
         return domNode;
       },

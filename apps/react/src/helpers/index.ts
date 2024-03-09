@@ -1,2 +1,2 @@
-export * from './layout.helper';
+export * from './template.helper';
 export * from './utils.helper';

@@ -2,7 +2,7 @@ import { FC, ReactNode, Suspense, useMemo } from 'react';
 import htmlReactParser from 'html-react-parser';
 import { ContextRouteProps } from './types';
 
-import { useLayout, useTitle } from './hooks';
+import { useTemplate, useTitle } from './hooks';
 //import { useDocumentHeader, useTitle } from './hooks';
 
 interface LayoutProps extends ContextRouteProps {
@@ -14,7 +14,7 @@ export function Layout({ component: Component, ...props }: LayoutProps) {
   const title = props.title || '';
 
   useTitle(title);
-  const template = useLayout({ module: props.module, view: props.view });
+  const template = useTemplate({ module: props.module, view: props.view });
 
   // Update the content of the title tag
   // useDocumentHeader('title', (element: Element) => {

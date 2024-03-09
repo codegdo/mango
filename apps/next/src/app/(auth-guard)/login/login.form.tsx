@@ -8,8 +8,6 @@ interface IProps { }
 function Login(props: IProps) {
   const { loginSuccess } = useActions();
 
-  console.log('LOGIN', props);
-
   const handleClick = () => {
     loginSuccess({ session: { isAuthenticated: true } });
   };
