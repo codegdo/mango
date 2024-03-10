@@ -1,16 +1,7 @@
 'use client';
-import templateLayout from './template.layout';
 
-interface IProps { }
+import { ComponentProps } from './template.layout';
 
-function Home(props: IProps) {
-  return (
-    <>
-      HOME
-    </>
-  );
+export default function Home(props: ComponentProps) {
+  return <>HOME</>;
 }
-
-export default templateLayout(Home, {
-  module: '*',
-});

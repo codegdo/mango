@@ -1,12 +1,19 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Home from './home.page';
+import TemplateLayout, { PageProps } from './template.layout';
 
 export const metadata: Metadata = {
   title: 'Home',
-  description: ''
+  description: '',
 };
 
-const HomePage: React.FC = () => <Home />;
-
-export default HomePage;
+export default function HomePage(props: PageProps) {
+  return (
+    <TemplateLayout
+      {...props}
+      component={Home}
+      route={{ module: 'home', view: 'index' }}
+    />
+  );
+}

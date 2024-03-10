@@ -1,12 +1,12 @@
 'use client';
 import { Form } from '@/components';
 import { useActions } from '@/hooks';
-import templateLayout from '../../template.layout';
+import { ComponentProps } from '@/app/template.layout';
 
-interface IProps { }
-
-function Login(props: IProps) {
+export default function Login(props: ComponentProps) {
   const { loginSuccess } = useActions();
+
+  console.log(props?.data, props?.route);
 
   const handleClick = () => {
     loginSuccess({ session: { isAuthenticated: true } });
@@ -21,7 +21,3 @@ function Login(props: IProps) {
     </>
   );
 }
-
-export default templateLayout(Login, {
-  module: 'auth',
-});

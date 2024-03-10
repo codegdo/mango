@@ -7,21 +7,45 @@ import htmlReactParser, { DOMNode } from 'html-react-parser';
 import { useTemplate } from '@/hooks';
 import { ButtonLogout } from '@/components';
 
-interface Params {
+interface KeyValue {
+  [key: string]: string;
+}
+
+export interface PageProps {
+  params: KeyValue;
+  searchParams: KeyValue;
+}
+
+export interface Route {
   module?: string;
   view?: string;
 }
 
-interface ComponentProps extends Params { }
+export interface ComponentProps extends PageProps {
+  route: Route;
+  data?: any;
+}
 
-const templateLayout = (
-  Component: React.FC<ComponentProps>,
-  params: Params
-): React.FC => {
+interface IProps {
+  component: React.FC<ComponentProps>;
+  route: Route;
+  data?: any;
+  params: KeyValue;
+  searchParams: KeyValue;
+}
 
+export default function TemplateLayout({
+  component: Component,
+  route,
+  data,
+  ...props
+}: IProps) {
+  console.log('TEMPLATE LAYOUT PROPS', props);
   const Template: React.FC = () => {
-    const templateContent = useTemplate(params);
+    const templateContent = useTemplate(route);
     //const currentPage = usePathname();
+
+    console.log('TEMPLATE NEW', data);
 
     const parsedContent = htmlReactParser(templateContent, {
       replace: (domNode) => {
@@ -30,7 +54,7 @@ const templateLayout = (
           'attribs' in domNode &&
           domNode.attribs.id === 'jsx_content'
         ) {
-          return <Component {...params} />;
+          return <Component route={route} data={data} {...props} />;
         }
 
         if (domNode && 'attribs' in domNode && domNode.name === 'a') {
@@ -59,8 +83,8 @@ const templateLayout = (
     return <>{parsedContent}</>;
   };
 
-  return Template;
-};
+  return <Template />;
+}
 
 // Helper function to get text content safely
 const extractTextContent = (domNode: DOMNode): string => {
@@ -75,5 +99,3 @@ const extractTextContent = (domNode: DOMNode): string => {
   }
   return '';
 };
-
-export default templateLayout;

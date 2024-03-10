@@ -1,16 +1,6 @@
 'use client';
-import templateLayout from '../../template.layout';
+import { ComponentProps } from '@/app/template.layout';
 
-interface IProps { }
-
-function DashboardIndex(props: IProps) {
-  return (
-    <>
-      DASHBOARD INDEX
-    </>
-  );
+export default function DashboardIndex(props: ComponentProps) {
+  return <>DASHBOARD INDEX</>;
 }
-
-export default templateLayout(DashboardIndex, {
-  module: 'dashboard',
-});

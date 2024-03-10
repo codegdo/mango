@@ -1,11 +1,9 @@
 'use client';
 import { Form } from '@/components';
 import { useActions } from '@/hooks';
-import templateLayout from '../../template.layout';
+import { ComponentProps } from '@/app/template.layout';
 
-interface IProps { }
-
-function Signup(props: IProps) {
+export default function Signup(props: ComponentProps) {
   const { loginSuccess } = useActions();
 
   console.log('SINGUP', props);
@@ -17,7 +15,3 @@ function Signup(props: IProps) {
     </>
   );
 }
-
-export default templateLayout(Signup, {
-  module: 'auth',
-});

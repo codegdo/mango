@@ -1,14 +1,20 @@
 import React from 'react';
 import NotFound from './not-found.page';
-
+import TemplateLayout, { PageProps } from '@/app/template.layout';
 
 export async function generateMetadata({ params }: any) {
   console.log('PARAM', params);
   return {
     title: '...',
-  }
+  };
 }
 
-const NotFoundPage: React.FC = () => <NotFound />;
-
-export default NotFoundPage;
+export default function NotFoundPage(props: PageProps) {
+  return (
+    <TemplateLayout
+      {...props}
+      component={NotFound}
+      route={{ module: 'notfound', view: 'index' }}
+    />
+  );
+}

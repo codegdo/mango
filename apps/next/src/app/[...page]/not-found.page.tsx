@@ -8,9 +8,8 @@ import {
 import { useSelector } from 'react-redux';
 import { AppState } from '@/stores';
 import { useEffect } from 'react';
-import templateLayout from '../template.layout';
 
-function NotFound() {
+export default function NotFound() {
   const { isAuthenticated } = useSelector((state: AppState) => state.session);
   const type = typeof window !== 'undefined' ? 'Client' : 'Server';
   const currentPage = usePathname();
@@ -32,8 +31,3 @@ function NotFound() {
     </div>
   );
 }
-
-export default templateLayout(NotFound, {
-  module: 'notfound',
-});
-
