@@ -14,7 +14,9 @@ async function getData(params: any) {
 
 export default async function LoginPage(props: PageProps) {
   const data = await getData(props.params);
+
   console.log(props);
+
   return (
     <TemplateLayout
       {...props}

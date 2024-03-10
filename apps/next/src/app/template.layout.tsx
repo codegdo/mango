@@ -41,49 +41,43 @@ export default function TemplateLayout({
   ...props
 }: IProps) {
   console.log('TEMPLATE LAYOUT PROPS', props);
-  const Template: React.FC = () => {
-    const templateContent = useTemplate(route);
-    //const currentPage = usePathname();
+  const templateContent = useTemplate(route);
 
-    console.log('TEMPLATE NEW', data);
+  //const currentPage = usePathname();
+  const parsedContent = htmlReactParser(templateContent, {
+    replace: (domNode) => {
+      if (
+        domNode &&
+        'attribs' in domNode &&
+        domNode.attribs.id === 'jsx_content'
+      ) {
+        return <Component route={route} data={data} {...props} />;
+      }
 
-    const parsedContent = htmlReactParser(templateContent, {
-      replace: (domNode) => {
-        if (
-          domNode &&
-          'attribs' in domNode &&
-          domNode.attribs.id === 'jsx_content'
-        ) {
-          return <Component route={route} data={data} {...props} />;
-        }
+      if (domNode && 'attribs' in domNode && domNode.name === 'a') {
+        const href = domNode.attribs.href || '';
+        const textContent = extractTextContent(domNode);
 
-        if (domNode && 'attribs' in domNode && domNode.name === 'a') {
-          const href = domNode.attribs.href || '';
-          const textContent = extractTextContent(domNode);
+        return href === '/logout' ? (
+          <ButtonLogout />
+        ) : (
+          <Link href={href}>{textContent}</Link>
+        );
+      }
 
-          return href === '/logout' ? (
-            <ButtonLogout />
-          ) : (
-            <Link href={href}>{textContent}</Link>
-          );
-        }
+      // if (
+      //   domNode &&
+      //   'attribs' in domNode &&
+      //   domNode.attribs['cz-shortcut-listen']
+      // ) {
+      //   delete domNode.attribs['cz-shortcut-listen']; // Remove the attribute
+      // }
 
-        // if (
-        //   domNode &&
-        //   'attribs' in domNode &&
-        //   domNode.attribs['cz-shortcut-listen']
-        // ) {
-        //   delete domNode.attribs['cz-shortcut-listen']; // Remove the attribute
-        // }
+      return domNode;
+    },
+  });
 
-        return domNode;
-      },
-    });
-
-    return <>{parsedContent}</>;
-  };
-
-  return <Template />;
+  return <>{parsedContent}</>;
 }
 
 // Helper function to get text content safely
