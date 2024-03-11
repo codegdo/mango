@@ -20,11 +20,15 @@ resources/: Include any additional resources.
 
 ## 2. Apps Folder:
 
-The "apps" folder seems to contain two subfolders: "nest" and "react." Assuming these are separate applications:
+The "apps" folder seems to contain two subfolders: "nest", "next", "react." Assuming these are separate applications:
 
 ```plaintext
 apps/
 |-- nest/
+|   |-- src/
+|   |-- tests/
+|   |-- ...
+|-- next/
 |   |-- src/
 |   |-- tests/
 |   |-- ...
@@ -36,6 +40,11 @@ apps/
 ```
 
 nest/: Nest application files.
+src/: Source code.
+tests/: Test files.
+Additional folders as needed.
+
+next/: Next application files.
 src/: Source code.
 tests/: Test files.
 Additional folders as needed.
@@ -54,12 +63,16 @@ Certainly! If you want to include a "docs" folder in your structure for document
 
 ```plaintext
 aws/
-|-- configurations/
+|-- configs/
 |-- scripts/
 |-- resources/
 |-- ...
 apps/
 |-- nest/
+|   |-- src/
+|   |-- tests/
+|   |-- ...
+|-- next/
 |   |-- src/
 |   |-- tests/
 |   |-- ...
@@ -71,10 +84,10 @@ apps/
 docs/
 |-- nest/
 |   |-- README.md
-|   |-- design.md
+-- next/
+|   |-- README.md
 |-- react/
 |   |-- README.md
-|   |-- design.md
 |-- ...
 ```
 

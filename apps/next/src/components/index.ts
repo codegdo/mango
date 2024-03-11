@@ -1,2 +1,2 @@
-export * from './form/form.component';
-export * from './button/button.logout';
+export * from './form';
+export * from './button';

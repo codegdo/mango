@@ -1,5 +1,7 @@
-import { useActions } from "@/hooks";
 import { Link } from "react-router-dom";
+
+import { Form } from "@/components";
+import { useActions } from "@/hooks";
 
 function Login() {
   const { loginSuccess } = useActions();
@@ -10,9 +12,10 @@ function Login() {
 
   return (
     <div>
-      <p>Login <button type='button' onClick={handleClick}>Login</button></p>
+      <Form />
+      <p>Login</p>
+      <button type='button' onClick={handleClick}>Login</button>
       <Link to='/signup'>Signup</Link>
-      <Link to='/welcome'>Welcome</Link>
     </div>
   );
 }

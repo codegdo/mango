@@ -10,13 +10,13 @@ export default defineConfig(({ mode }: ConfigEnv) => {
   return {
     plugins: [react()],
     server: {
-      port: 3000,
+      port: 3001,
     },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
         '@Types': path.resolve(__dirname, './src/types'),
-        '@Layouts': path.resolve(__dirname, './src/layouts'),
+        '@Template': path.resolve(__dirname, './src/templates'),
         '@Pages': path.resolve(__dirname, './src/pages'),
         '@Stores': path.resolve(__dirname, './src/stores'),
         '@Helpers': path.resolve(__dirname, './src/helpers'),

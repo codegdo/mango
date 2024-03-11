@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { App } from './app.component';
-import { AppGuard, AuthGuard, PageGuard } from './app.guard';
+import { MainGuard, AuthGuard, PageGuard } from './app.guard';
 import { Layout } from './app.layout';
 
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard.index'));
@@ -21,7 +21,7 @@ const routes = [
     ),
     children: [
       {
-        element: <AppGuard />,
+        element: <MainGuard />,
         children: [
           {
             path: '/',
@@ -29,7 +29,7 @@ const routes = [
           },
           {
             path: '/dashboard',
-            element: <Layout name='dashboard' title='Dashboard' module='dashboard' view='index' component={Dashboard} />,
+            element: <Layout title='Dashboard' module='dashboard' view='index' component={Dashboard} />,
           },
         ],
       },
@@ -38,11 +38,11 @@ const routes = [
         children: [
           {
             path: '/login',
-            element: <Layout name='auth_login' title='Login' module='auth' view='login' component={Login} />,
+            element: <Layout title='Login' module='auth' view='login' component={Login} />,
           },
           {
             path: '/signup',
-            element: <Layout name='auth_signup' title='Signup' module='auth' view='signup' component={Signup} />,
+            element: <Layout title='Signup' module='auth' view='signup' component={Signup} />,
           },
         ],
       },

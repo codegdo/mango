@@ -1,11 +1,11 @@
 import { Navigate, Outlet, useOutletContext } from 'react-router-dom';
 import { ContextOutletProps } from './types';
 
-interface WebPageProps {
+interface PageProps {
   notFound: () => JSX.Element
 }
 
-export function AppGuard() {
+export function MainGuard() {
   const { isAuthenticated } = useOutletContext<ContextOutletProps>();
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' />;
 }
@@ -15,7 +15,7 @@ export function AuthGuard() {
   return !isAuthenticated ? <Outlet /> : <Navigate to='/dashboard' />;
 }
 
-export function PageGuard({ notFound }: WebPageProps) {
+export function PageGuard({ notFound }: PageProps) {
   const { isAuthenticated } = useOutletContext<ContextOutletProps>();
   return !isAuthenticated ? <Outlet /> : notFound();
 }
