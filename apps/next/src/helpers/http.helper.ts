@@ -1,45 +1,38 @@
-export interface RequestOptions {
+export interface RequestOptions extends RequestInit {
   baseUrl?: string;
   url?: string;
-  method?: string;
-  headers?: Record<string, string>;
-  body?: string | Record<string, unknown>;
-  params?: Record<string, unknown>;
-  withCredentials?: boolean;
-  credentials?: RequestCredentials;
-  signal?: AbortSignal
+  params?: Record<string, string | number>;
 }
 
-export interface HttpHelperConfig {
+export interface DefaultConfigs {
   contentType: string;
   credentials: RequestCredentials;
-  withCredentials: boolean;
 }
 
-export interface HttpResponse<T> extends Response {
+export interface ResponseData<T> {
+  status: number;
+  ok: boolean;
   data?: T;
 }
 
-const HTTP_METHODS = {
-  GET: 'GET',
-  POST: 'POST',
-  PUT: 'PUT',
-  PATCH: 'PATCH',
-  DELETE: 'DELETE',
+export enum HTTP_METHODS {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE',
 };
 
 class HttpHelper {
   private contentType: string;
   private credentials: RequestCredentials;
-  private withCredentials: boolean;
 
-  constructor(config?: HttpHelperConfig) {
-    this.contentType = config?.contentType || 'application/json';
-    this.credentials = config?.credentials || 'include';
-    this.withCredentials = config?.withCredentials || true;
+  constructor(configs?: DefaultConfigs) {
+    this.contentType = configs?.contentType || 'application/json';
+    this.credentials = configs?.credentials || 'include';
   }
 
-  private requestOptions(options: RequestOptions): RequestInit {
+  private requestOptions(options: RequestOptions): RequestOptions {
     const { headers, method, body, ...args } = options || {};
 
     return {
@@ -51,61 +44,48 @@ class HttpHelper {
       method: method || (body ? HTTP_METHODS.POST : HTTP_METHODS.GET),
       body: typeof body === 'string' ? body : JSON.stringify(body),
       credentials: this.credentials,
-      withCredentials: this.withCredentials,
       ...args,
     };
   }
 
-  async request<T>(url: string, options: RequestOptions = {}): Promise<HttpResponse<T>> {
-    return this._fetch<T>(new Request(url, this.requestOptions(options)));
+  async request<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
+    return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async get<T>(url: string, options: RequestOptions = {}): Promise<HttpResponse<T>> {
+  async get<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.GET;
-    return this._fetch<T>(new Request(url, this.requestOptions(options)));
+    return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async post<T>(url: string, options: RequestOptions = {}): Promise<HttpResponse<T>> {
+  async post<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.POST;
-    return this._fetch<T>(new Request(url, this.requestOptions(options)));
+    return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async patch<T>(url: string, options: RequestOptions = {}): Promise<HttpResponse<T>> {
+  async patch<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.PATCH;
-    return this._fetch<T>(new Request(url, this.requestOptions(options)));
+    return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async put<T>(url: string, options: RequestOptions = {}): Promise<HttpResponse<T>> {
+  async put<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.PUT;
-    return this._fetch<T>(new Request(url, this.requestOptions(options)));
+    return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async delete<T>(url: string, options: RequestOptions = {}): Promise<HttpResponse<T>> {
+  async delete<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.DELETE;
-    return this._fetch<T>(new Request(url, this.requestOptions(options)));
+    return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async _fetch<T>(req: Request): Promise<HttpResponse<T>> {
+  async _fetch<T>(url: string, options: RequestOptions): Promise<ResponseData<T>> {
     try {
-      const res: HttpResponse<T> = await fetch(req);
+      const res = await fetch(url, options);
 
-      if (!res.ok) {
-        throw new Error(`Request failed with status: ${res.status}`);
-      }
-
-      if (res.status === 204) {
-        // No content
-        res.data = undefined;
-      } else {
-        const rawBody = await res.text();
-        try {
-          res.data = JSON.parse(rawBody);
-        } catch (jsonError) {
-          res.data = rawBody as T;
-        }
-      }
-
-      return res;
+      return {
+        status: res.status,
+        ok: res.ok,
+        data: await res.json() as T
+      };
     } catch (error) {
       console.error('Fetch Error:', error);
       throw error;

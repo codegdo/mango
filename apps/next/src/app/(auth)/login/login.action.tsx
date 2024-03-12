@@ -1,5 +1,9 @@
+"use server"
 import { http } from "@/helpers";
 
 export async function loginAction() {
-  return await http.get('https://jsonplaceholder.typicode.com/todos/1');
+  console.log('ACTION CALL');
+  const baseUrl = process.env.BASE_URL;
+
+  return http.get(`${baseUrl}/todos/1`);
 }

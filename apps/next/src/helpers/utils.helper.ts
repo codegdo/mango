@@ -11,7 +11,23 @@ class UtilsHelper {
     } else {
       return parts.length > 2 ? parts[0] : null;
     }
+  }
 
+  stringifyUrl(url: string, query: Record<string, string | number> = {}) {
+    const queryString = Object.entries(query)
+      .map(([key, value]) => {
+        if (typeof key !== 'string' || (typeof value !== 'string' && typeof value !== 'number')) {
+          throw new Error('Invalid query parameter type');
+        }
+        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+      })
+      .join('&');
+
+    if (queryString) {
+      return `${url}?${queryString}`;
+    } else {
+      return url;
+    }
   }
 }
 
