@@ -43,4 +43,12 @@ Initialize a new Git repository:
 git init
 ```
 
+Once installation is complete, navigate to "nest" directory.
+
+Start the application:
+
+```bash
+npm run start
+```
+
 Now, you have successfully initialized a new Nest.js application within the "apps" folder, removed the previous Git history, and reinitialized a new Git repository for your Nest.js project. Adjust the instructions as needed based on your specific project requirements.

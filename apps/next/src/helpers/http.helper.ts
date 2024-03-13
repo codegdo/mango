@@ -1,6 +1,13 @@
+export interface DelayOptions {
+  count?: number;
+  maxAttempts?: number;
+  delayMs?: number;
+}
+
 export interface RequestOptions extends RequestInit {
   baseUrl?: string;
   params?: Record<string, string | number>;
+  delay?: DelayOptions;
 }
 
 export interface DefaultConfigs {
@@ -34,6 +41,7 @@ class HttpHelper {
   private requestOptions({
     baseUrl,
     params,
+    delay,
     headers,
     method,
     body,
