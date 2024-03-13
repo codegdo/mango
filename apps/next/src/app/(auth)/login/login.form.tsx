@@ -2,8 +2,7 @@
 import { Form } from '@/components';
 import { useActions, useFetch } from '@/hooks';
 import { ComponentProps } from '@/app/template.layout';
-//import { loginAction } from './login.action';
-import { http } from '@/helpers';
+import { loginAction } from './login.action';
 
 export default function Login(props: ComponentProps) {
   const { loginSuccess } = useActions();
@@ -14,15 +13,8 @@ export default function Login(props: ComponentProps) {
   const handleClick = async () => {
     //loginSuccess({ session: { isAuthenticated: true } });
 
-    const result = await query({ url: '/todos/1' });
-
-    //const result = await query(loginAction);
-    //const result1 = await loginAction();
-    //const result = await props?.actions?.loginAction();
-    //await props?.actions?.loginAction();
-    //await props?.actions?.loginAction();
-    //const baseUrl = process.env.BASE_URL;
-    //const result = await http.get(`https://jsonplaceholder.typicode.com/todos/1`);
+    const result = await query('/todos/1');
+    const result1 = await loginAction({ body: 'hello' });
     console.log(result);
   };
 

@@ -1,6 +1,5 @@
 export interface RequestOptions extends RequestInit {
   baseUrl?: string;
-  url?: string;
   params?: Record<string, string | number>;
 }
 
@@ -21,7 +20,7 @@ export enum HTTP_METHODS {
   PUT = 'PUT',
   PATCH = 'PATCH',
   DELETE = 'DELETE',
-};
+}
 
 class HttpHelper {
   private contentType: string;
@@ -32,66 +31,91 @@ class HttpHelper {
     this.credentials = configs?.credentials || 'include';
   }
 
-  private requestOptions(options: RequestOptions): RequestOptions {
-    const { headers, method, body, ...args } = options || {};
-
+  private requestOptions({
+    baseUrl,
+    params,
+    headers,
+    method,
+    body,
+    ...options
+  }: RequestOptions): RequestInit {
     return {
       headers: {
         'Content-Type': this.contentType,
-        'Accept': this.contentType,
-        ...headers
+        Accept: this.contentType,
+        ...headers,
       },
       method: method || (body ? HTTP_METHODS.POST : HTTP_METHODS.GET),
       body: typeof body === 'string' ? body : JSON.stringify(body),
       credentials: this.credentials,
-      ...args,
+      ...options,
     };
   }
 
-  async request<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
+  async request<T>(
+    url: string,
+    options: RequestOptions = {}
+  ): Promise<ResponseData<T>> {
     return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async get<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
+  async get<T>(
+    url: string,
+    options: RequestOptions = {}
+  ): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.GET;
     return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async post<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
+  async post<T>(
+    url: string,
+    options: RequestOptions = {}
+  ): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.POST;
     return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async patch<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
+  async patch<T>(
+    url: string,
+    options: RequestOptions = {}
+  ): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.PATCH;
     return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async put<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
+  async put<T>(
+    url: string,
+    options: RequestOptions = {}
+  ): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.PUT;
     return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async delete<T>(url: string, options: RequestOptions = {}): Promise<ResponseData<T>> {
+  async delete<T>(
+    url: string,
+    options: RequestOptions = {}
+  ): Promise<ResponseData<T>> {
     options.method = HTTP_METHODS.DELETE;
     return this._fetch<T>(url, this.requestOptions(options));
   }
 
-  async _fetch<T>(url: string, options: RequestOptions): Promise<ResponseData<T>> {
+  async _fetch<T>(
+    url: string,
+    options: RequestOptions
+  ): Promise<ResponseData<T>> {
     try {
       const res = await fetch(url, options);
 
       return {
         status: res.status,
         ok: res.ok,
-        data: await res.json() as T
+        data: (await res.json()) as T,
       };
     } catch (error) {
       console.error('Fetch Error:', error);
       throw error;
     }
   }
-
 }
 
 export const http = new HttpHelper();

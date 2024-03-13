@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from 'react';
 import { http, RequestOptions, utils } from '@/helpers';
+import { getBaseUrl } from '@/actions';
 
 export enum FetchStatus {
   IDLE = 'IDLE',
@@ -11,24 +12,46 @@ export enum FetchStatus {
   ABORT = 'ABORT',
 }
 
-export const useFetch = (url?: string, params?: Record<string, string | number>) => {
-  const [status, setStatus] = useState();
+export const useFetch = <T>(url?: string, options?: RequestOptions) => {
+  const [status, setStatus] = useState<keyof typeof FetchStatus>('IDLE');
+  const [data, setData] = useState<T>();
+  const [error, setError] = useState<Error>();
+  const { current: controller } = useRef(new AbortController());
 
-  const request = async (options: RequestOptions = {}) => {
-    const baseUrl = options.baseUrl || process.env.BASE_URL || 'https://jsonplaceholder.typicode.com';
-    const path = options.url || url;
-    const query = options.params || params || {};
-    const strUrl = utils.stringifyUrl(`${baseUrl}${path}`, query)
-    return http.request(strUrl);
-  }
+  const httpRequest = async (
+    requestUrl?: string,
+    requestOptions?: RequestOptions
+  ) => {
+    const baseUrl =
+      requestOptions?.baseUrl || options?.baseUrl || (await getBaseUrl());
+    const path = requestUrl || url;
+    const query = requestOptions?.params || options?.params;
 
-  const mutation = async (options?: RequestOptions) => {
-    return await request(options);
-  }
+    if (!baseUrl || !path) {
+      throw new Error(
+        'baseUrl and path must be provided and cannot be null, undefined, or empty string.'
+      );
+    }
 
-  const query = async (options?: RequestOptions) => {
-    return request(options);
-  }
+    const strUrl = utils.stringifyUrl(`${baseUrl}${path}`, query);
 
-  return { query, mutation };
-}
+    return http.request<T>(strUrl, requestOptions || options || {});
+  };
+
+  const mutation = async (url?: string, options?: RequestOptions) => {
+    return httpRequest(url, options);
+  };
+
+  const query = async (url?: string, options?: RequestOptions) => {
+    return httpRequest(url, options);
+  };
+
+  return {
+    status,
+    data,
+    error,
+    query,
+    mutation,
+    controller,
+  };
+};
