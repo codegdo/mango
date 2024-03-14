@@ -17,8 +17,17 @@ export interface DefaultConfigs {
 
 export interface ResponseData<T> {
   status: number;
+  statusText: string;
   ok: boolean;
-  data?: T;
+  data: T;
+  redirected: boolean;
+  //headers: Headers;
+  //url: string;
+  //type: ResponseType;
+  //bodyUsed: boolean;
+  //contentType: string;
+  //contentLength: number | null;
+  //responseURL: string;
 }
 
 export enum HTTP_METHODS {
@@ -116,8 +125,17 @@ class HttpHelper {
 
       return {
         status: res.status,
+        statusText: res.statusText,
         ok: res.ok,
         data: (await res.json()) as T,
+        redirected: res.redirected,
+        //headers: res.headers,
+        //url: res.url,
+        //type: res.type,
+        //bodyUsed: res.bodyUsed,
+        //contentType: res.headers.get('Content-Type') || '',
+        //contentLength: Number(res.headers.get('Content-Length')) || null,
+        //responseURL: res.url,
       };
     } catch (error) {
       console.error('Fetch Error:', error);

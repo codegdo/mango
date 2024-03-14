@@ -1,3 +1,4 @@
+```json
 {
   "prettier/prettier": [
     "error",
@@ -10,3 +11,4 @@
     }
   ]
 }
+```

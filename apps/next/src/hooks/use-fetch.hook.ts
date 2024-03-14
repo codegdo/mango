@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { http, DelayOptions, RequestOptions, ResponseData, utils } from '@/helpers';
-import { getBaseUrl } from '@/actions';
+import { getApiUrl, getBaseUrl } from '@/actions';
 
 export enum FetchStatus {
   IDLE = 'IDLE',
@@ -69,7 +69,7 @@ export const useFetch = <T>(url?: string, options?: RequestOptions) => {
       const mergedOptions = { ...options, ...requestOptions };
 
       // Extract baseUrl and path from options or fetch them from default sources
-      const baseUrl = mergedOptions.baseUrl || (await getBaseUrl());
+      const baseUrl = mergedOptions.baseUrl || (await getApiUrl());
       const path = requestUrl || url;
 
       // Ensure essential parameters are provided

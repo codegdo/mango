@@ -13,7 +13,7 @@ export default function Login(props: ComponentProps) {
   const handleClick = async () => {
     //loginSuccess({ session: { isAuthenticated: true } });
 
-    const result = await query('/todos/1');
+    const result = await query('/auth/login', { body: '{}' });
     const result1 = await loginAction({ body: 'hello' });
     console.log(result);
   };

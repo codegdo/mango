@@ -1,5 +1,49 @@
 # Create Nest App Folder Structure
 
+```plaintext
+
+apps/
+│
+├── api/
+│   └── (files related to the API application)
+│
+├── manager/
+│   └── (files related to the manager application)
+│
+├── worker/
+│   └── (files related to the worker application)
+│
+└── logger/
+    └── (files related to the logger application)
+
+libs/
+│
+└── common/
+    │
+    └── modules/
+        │
+        ├── config/
+        │   └── (files related to configuration settings)
+        │
+        ├── connect/
+        │   └── (files related to connecting to external services or databases)
+        │
+        ├── log/
+        │   └── (files related to logging functionality)
+        │
+        ├── prefix/
+        │   └── (files related to adding prefixes or formatting)
+        │
+        └── session/
+            └── (files related to managing user sessions)
+
+```
+
+The apps directory contains separate directories for each application (api, manager, worker, logger), each with files related to that specific application.
+The libs directory contains shared libraries used by multiple applications. Within the common directory, there's a modules directory that organizes different functionalities into separate modules (config, connect, log, prefix, session).
+
+This structure helps to organize the project by separating concerns into individual applications and shared libraries, making it easier to manage and maintain the codebase.
+
 ## Convert the Project into a Monorepo
 
 - Generate a library named "common" to share code between microservices:
