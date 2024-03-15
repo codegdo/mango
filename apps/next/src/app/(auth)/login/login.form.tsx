@@ -2,7 +2,7 @@
 import { Form } from '@/components';
 import { useActions, useFetch } from '@/hooks';
 import { ComponentProps } from '@/app/template.layout';
-import { loginAction } from './login.action';
+import { signupAction } from './login.action';
 
 export default function Login(props: ComponentProps) {
   const { loginSuccess } = useActions();
@@ -12,9 +12,14 @@ export default function Login(props: ComponentProps) {
 
   const handleClick = async () => {
     //loginSuccess({ session: { isAuthenticated: true } });
-
+    //await query('/auth/login', { body: '{}' });
     const result = await query('/auth/login', { body: '{}' });
-    const result1 = await loginAction({ body: 'hello' });
+    //const result = await loginAction('/auth/login', { body: '{}' });
+    console.log(result);
+  };
+
+  const handleSignup = async () => {
+    const result = await signupAction('/auth/signup');
     console.log(result);
   };
 
@@ -22,6 +27,9 @@ export default function Login(props: ComponentProps) {
     <>
       <button type='button' onClick={handleClick}>
         Login
+      </button>
+      <button type='button' onClick={handleSignup}>
+        GET SIGNUP
       </button>
       <Form />
     </>

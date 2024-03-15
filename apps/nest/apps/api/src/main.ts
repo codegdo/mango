@@ -8,12 +8,12 @@ async function bootstrap() {
 
   app.enableVersioning({
     type: VersioningType.URI,
-    defaultVersion: '1',
-    prefix: 'api/v',
+    defaultVersion: process.env.API_VERSION,
+    prefix: process.env.API_PREFIX,
   });
 
   app.enableCors({
-    origin: process.env.CLIENT_URL,
+    origin: [process.env.CLIENT_URL, process.env.NEXT_URL],
     credentials: true,
     allowedHeaders: [
       'Content-Type',

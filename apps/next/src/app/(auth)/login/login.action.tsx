@@ -1,9 +1,17 @@
 'use server';
-import { http } from '@/helpers';
+import { RequestOptions, http, utils } from '@/helpers';
 
-export async function loginAction<T>(options: RequestInit = {}) {
+export async function signupAction<T>(url: string, options: RequestOptions = {}) {
   console.log('ACTION CALL', options);
-  const baseUrl = process.env.BASE_URL;
 
-  return http.request<T>(`${baseUrl}/todos/1`);
+  const baseUrl = options?.baseUrl || process.env.API_URL;
+  const path = url;
+
+  if (!baseUrl || !path) {
+    throw new Error('baseUrl and path must be provided and cannot be null, undefined, or an empty string.');
+  }
+
+  const fullUrl = utils.stringifyUrl(`${baseUrl}${path}`, options?.params);
+
+  return http.request<T>(fullUrl, options);
 }

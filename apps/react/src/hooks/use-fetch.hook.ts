@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { http, DelayOptions, RequestOptions, ResponseData, utils } from '@/helpers';
-import { envAPI } from '@/actions';
+import { API_URL } from '@/app.config';
 
 export enum FetchStatus {
   IDLE = 'IDLE',
@@ -70,7 +70,7 @@ export const useFetch = <T>(url?: string, options?: RequestOptions) => {
       //const apiEnv = await envAPI();
 
       // Extract baseUrl and path from options or fetch them from default sources
-      const baseUrl = mergedOptions.baseUrl || process.env.API_URL;
+      const baseUrl = mergedOptions.baseUrl || API_URL;
       const path = requestUrl || url;
 
       // Ensure essential parameters are provided
