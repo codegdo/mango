@@ -35,3 +35,7 @@ module.exports = {
   },
 };
 ```
+
+MAC fix single quote
+Inside the package.json -> "prettier": { "singleQuote": true }
+Restart vs

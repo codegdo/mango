@@ -18,7 +18,4 @@ nest move the orginal main src folder to "nest" folder
 
 remove "nest" config section
 
-update copy apps/nest/src/main.ts to apps/api/src/main.ts
-update copy apps/nest/src/api.module.ts to apps/api/src/api.module.ts
-
 remove "nest" folder in apps
