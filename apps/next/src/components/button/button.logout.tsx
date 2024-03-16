@@ -1,7 +1,7 @@
-import { useActions } from '@/hooks';
+import { useAction } from '@/hooks';
 
 export function ButtonLogout() {
-  const { logoutSuccess } = useActions();
+  const { logoutSuccess } = useAction();
 
   const handleClick = () => {
     logoutSuccess({ session: { isAuthenticated: false } });

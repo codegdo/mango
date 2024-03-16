@@ -13,7 +13,12 @@ async function bootstrap() {
   });
 
   app.enableCors({
-    origin: [process.env.CLIENT_URL, process.env.NEXT_URL],
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      /^https?:\/\/[^.]+\.localhost:3000$/,
+      /^https?:\/\/[^.]+\.localhost:3001$/,
+    ],
     credentials: true,
     allowedHeaders: [
       'Content-Type',

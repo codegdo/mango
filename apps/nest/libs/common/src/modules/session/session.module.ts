@@ -13,6 +13,7 @@ import { ConfigModule } from '../config/config.module';
       useFactory: async (): Promise<NestSessionOptions> => {
         return {
           session: {
+            name: 'mango.sid',
             secret: process.env.SESSION_SECRET,
             resave: true,
             saveUninitialized: true,

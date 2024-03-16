@@ -1,12 +1,13 @@
 'use client';
 import { Form } from '@/components';
-import { useActions, useFetch } from '@/hooks';
+import { useAction, useFetch, useServer } from '@/hooks';
 import { ComponentProps } from '@/app/template.layout';
 import { signupAction } from './login.action';
 
 export default function Login(props: ComponentProps) {
-  const { loginSuccess } = useActions();
+  const { loginSuccess } = useAction();
   const { query } = useFetch();
+  const { action } = useServer(signupAction);
 
   console.log(props?.data, props?.route);
 
@@ -19,7 +20,7 @@ export default function Login(props: ComponentProps) {
   };
 
   const handleSignup = async () => {
-    const result = await signupAction('/auth/signup');
+    const result = await action();
     console.log(result);
   };
 

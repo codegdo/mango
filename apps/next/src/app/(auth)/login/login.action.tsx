@@ -1,17 +1,20 @@
 'use server';
 import { RequestOptions, http, utils } from '@/helpers';
+import { cookies } from 'next/headers';
 
-export async function signupAction<T>(url: string, options: RequestOptions = {}) {
-  console.log('ACTION CALL', options);
+export async function signupAction<T>(options: RequestOptions = {}) {
+  const sid = cookies().get('mango.sid');
+  console.log('ACTION CALL', options, sid);
 
-  const baseUrl = options?.baseUrl || process.env.API_URL;
-  const path = url;
+  const fullUrl = utils.stringifyUrl(
+    `${process.env.API_URL}/auth/signup`,
+    options?.params
+  );
 
-  if (!baseUrl || !path) {
-    throw new Error('baseUrl and path must be provided and cannot be null, undefined, or an empty string.');
-  }
+  // Add the cookie to the request headers if available
+  const headers = sid
+    ? { ...options.headers, Cookie: `mango.sid=${sid}` }
+    : options.headers;
 
-  const fullUrl = utils.stringifyUrl(`${baseUrl}${path}`, options?.params);
-
-  return http.request<T>(fullUrl, options);
+  return http.request<T>(fullUrl, { ...options, headers });
 }
