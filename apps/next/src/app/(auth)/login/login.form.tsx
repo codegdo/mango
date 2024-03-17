@@ -21,6 +21,7 @@ export default function Login(props: ComponentProps) {
 
   const handleSignup = async () => {
     const result = await action();
+    //const result = await query('/auth/signup');
     console.log(result);
   };
 

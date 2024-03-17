@@ -1,6 +1,6 @@
 ## Install Dependencies `express-session nestjs-session`
 
-- Run `npm install express-session nestjs-session`
+- Run `npm install express-session nestjs-session @types/express-session`
 
 ## Create Session Module
 

@@ -13,8 +13,13 @@ export async function signupAction<T>(options: RequestOptions = {}) {
 
   // Add the cookie to the request headers if available
   const headers = sid
-    ? { ...options.headers, Cookie: `mango.sid=${sid}` }
+    ? {
+        ...options.headers,
+        Cookie: `${sid.name}=${sid.value}`,
+      }
     : options.headers;
+
+  console.log(headers);
 
   return http.request<T>(fullUrl, { ...options, headers });
 }
