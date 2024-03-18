@@ -1,8 +1,10 @@
 'use server';
+import { unstable_noStore } from 'next/cache';
 import { RequestOptions, http, utils } from '@/helpers';
 import { cookies } from 'next/headers';
 
 export async function signupAction<T>(options: RequestOptions = {}) {
+  unstable_noStore();
   const sid = cookies().get(`${process.env.COOKIE_NAME}`);
   console.log('ACTION CALL', options, sid);
 
