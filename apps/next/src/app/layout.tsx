@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 //import { Inter } from 'next/font/google';
-
-import TemplateProvider from './template.provider';
-import TemplateApp from './template.app';
+import { TemplateProvider } from '@/components';
 
 //const inter = Inter({ subsets: ['latin'] });
 
@@ -17,12 +15,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: IProps) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body cz-shortcut-listen='true'>
         <TemplateProvider>
-          <TemplateApp>
-            {children}
-          </TemplateApp>
+          {children}
         </TemplateProvider>
       </body>
     </html>

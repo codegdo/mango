@@ -34,7 +34,7 @@ interface IProps {
   searchParams: KeyValue;
 }
 
-export default function TemplateLayout({
+export function TemplateLayout({
   component: Component,
   route,
   data,

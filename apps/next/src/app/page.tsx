@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Home from './home.page';
-import TemplateLayout, { PageProps } from './template.layout';
+import { TemplateLayout, PageProps } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Home',

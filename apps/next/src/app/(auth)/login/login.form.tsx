@@ -1,7 +1,7 @@
 'use client';
 import { Form } from '@/components';
 import { useAction, useFetch, useServer } from '@/hooks';
-import { ComponentProps } from '@/app/template.layout';
+import { ComponentProps } from '@/components/template/template.layout';
 import { signupAction } from './login.action';
 
 export default function Login(props: ComponentProps) {

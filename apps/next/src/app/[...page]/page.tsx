@@ -1,6 +1,6 @@
 import React from 'react';
 import NotFound from './not-found.page';
-import TemplateLayout, { PageProps } from '@/app/template.layout';
+import { PageProps, TemplateLayout } from '@/components';
 
 export async function generateMetadata({ params }: any) {
   console.log('PARAM', params);

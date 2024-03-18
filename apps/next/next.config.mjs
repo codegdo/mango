@@ -2,6 +2,8 @@
 const nextConfig = {
   env: {
     API_URL: 'http://localhost:5000/api/v1',
+    COOKIE_NAME: 'mango.sid',
+    TOKEN_NAME: 'mango.access_token',
   },
   async rewrites() {
     return [

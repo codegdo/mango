@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Login from './login.form';
-import TemplateLayout, { PageProps } from '@/app/template.layout';
+import { PageProps, TemplateLayout } from '@/components';
 
 export const metadata: Metadata = {
   title: 'Login',

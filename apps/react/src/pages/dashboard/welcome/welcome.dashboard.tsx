@@ -1,8 +1,8 @@
-import { useActions } from '@/hooks'
+import { useAction } from '@/hooks'
 import { Link } from 'react-router-dom'
 
 function Welcome() {
-  const { logoutSuccess } = useActions()
+  const { logoutSuccess } = useAction()
 
   const handleClick = () => {
     logoutSuccess({ session: { isAuthenticated: false } })

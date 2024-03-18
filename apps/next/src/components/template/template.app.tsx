@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect } from "react"
+import { PropsWithChildren, useEffect } from "react"
 
-export default function TemplateApp({ children }: { children: React.ReactNode }) {
+export function TemplateApp({ children }: PropsWithChildren) {
 
   useEffect(() => {
     console.log('APP INITIAL LOAD');
