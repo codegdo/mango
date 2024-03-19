@@ -20,6 +20,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         '@Pages': path.resolve(__dirname, './src/pages'),
         '@Stores': path.resolve(__dirname, './src/stores'),
         '@Helpers': path.resolve(__dirname, './src/helpers'),
+        '@Components': path.resolve(__dirname, './src/components'),
       },
     },
   }

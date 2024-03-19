@@ -3,7 +3,7 @@ import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import { App } from './app.component';
 import { MainGuard, AuthGuard, PageGuard } from './app.guard';
-import { Layout } from './app.layout';
+import { TemplateLayout as Layout } from './components';
 
 const Dashboard = lazy(() => import('./pages/dashboard/dashboard.index'));
 const Login = lazy(() => import('./pages/auth/login/login.form'));

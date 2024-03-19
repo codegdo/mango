@@ -1,7 +1,7 @@
 import { FC, ReactNode, Suspense, useMemo } from 'react';
 import htmlReactParser from 'html-react-parser';
 
-import { ContextRouteProps } from './types';
+import { ContextRouteProps } from '@/types';
 import { useTemplate, useTitle } from './hooks';
 //import { useDocumentHeader, useTitle } from './hooks';
 
@@ -9,7 +9,7 @@ interface LayoutProps extends ContextRouteProps {
   component: FC<ContextRouteProps>;
 }
 
-export function Layout({ component: Component, ...props }: LayoutProps) {
+export function TemplateLayout({ component: Component, ...props }: LayoutProps) {
 
   const title = props.title || '';
 
