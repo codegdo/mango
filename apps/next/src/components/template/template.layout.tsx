@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import htmlReactParser, { DOMNode } from 'html-react-parser';
 
-import { useTemplate } from '@/hooks';
+import { useTemplate } from './hooks';
 import { ButtonLogout } from '@/components';
 
 interface KeyValue {

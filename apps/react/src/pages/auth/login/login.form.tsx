@@ -5,16 +5,15 @@ import { useFetch } from '@/hooks';
 
 function Login() {
   //const { loginSuccess } = useAction();
-  const { query } = useFetch();
+  const { query, mutation } = useFetch();
 
   const handleClick = async () => {
     //loginSuccess({ session: { isAuthenticated: true } });
-    const result = await query('/auth/login', { body: '{}' });
+    const result = await mutation('/auth/login', { body: '{}' });
     console.log(result);
   };
 
   const handleSignup = async () => {
-    //loginSuccess({ session: { isAuthenticated: true } });
     const result = await query('/auth/signup');
     console.log(result);
   };

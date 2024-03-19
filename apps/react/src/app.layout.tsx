@@ -1,7 +1,7 @@
 import { FC, ReactNode, Suspense, useMemo } from 'react';
 import htmlReactParser from 'html-react-parser';
-import { ContextRouteProps } from './types';
 
+import { ContextRouteProps } from './types';
 import { useTemplate, useTitle } from './hooks';
 //import { useDocumentHeader, useTitle } from './hooks';
 

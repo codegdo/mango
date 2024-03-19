@@ -1,7 +1,7 @@
 'use client'
 import { useRef, useState } from 'react';
 import { http, DelayOptions, RequestOptions, ResponseData, utils } from '@/helpers';
-import { envAPI } from '@/actions';
+import { envAPI } from '@/services';
 
 export enum FetchStatus {
   IDLE = 'IDLE',

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { AppState } from "@/stores";
 import { templateHelper } from "@/helpers";
-import defaultTemplate from '@/templates';
+import defaultTemplate from '@/layouts';
 
 interface Param {
   module?: string;
