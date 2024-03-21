@@ -8,7 +8,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Print greeting
-        run: echo "Hello World!"
-      - name: Print goodbye
-        run: echo "Goodbye"
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Navigate to next folder
+        run: cd apps/next
+
+      - name: Install dependencies
+        run: npm ci
+
+      # - name: Deploy with SST
+      #   run: npx sst deploy --yes
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
