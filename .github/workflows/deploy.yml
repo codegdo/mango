@@ -19,8 +19,7 @@ jobs:
       - name: Install dependencies and build Next.js app
         run: |
           cd apps/next
-          npm install
-          npm run build
+          npm ci
           cd ../..
 
       # - name: Deploy with SST
