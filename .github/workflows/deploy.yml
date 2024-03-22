@@ -16,14 +16,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Navigate to next folder
-        run: cd apps/next
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run npm ci
-        run: npm ci
+      - name: Install dependencies and build Next.js app
+        run: |
+          cd apps/next
+          npm install
+          npm run build
+          cd ../..
 
       # - name: Deploy with SST
       #   run: npx sst deploy --yes
