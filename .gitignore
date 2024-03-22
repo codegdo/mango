@@ -44,6 +44,10 @@ dist-ssr
 # next.js
 .next
 /.next/*
+.sst
+/.sst/*
+.open-next
+/.open-next
 /out/
 
 # production
