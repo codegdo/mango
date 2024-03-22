@@ -1,7 +1,6 @@
 'use client'
 import { useRef, useState } from 'react';
 import { http, DelayOptions, RequestOptions, ResponseData, utils } from '@/helpers';
-import { envAPI } from '@/services';
 
 export enum FetchStatus {
   IDLE = 'IDLE',
@@ -68,7 +67,6 @@ export const useFetch = <T>(url?: string, options?: RequestOptions) => {
     try {
       // Merge provided requestOptions with default options or an empty object
       const mergedOptions = { ...options, ...requestOptions };
-      //const apiEnv = await envAPI();
 
       // Extract baseUrl and path from options or fetch them from default sources
       const baseUrl = mergedOptions.baseUrl || process.env.API_URL;

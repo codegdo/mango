@@ -20,6 +20,9 @@ jobs:
         run: cd apps/next
 
       - name: Install dependencies
+        run: npm install
+
+      - name: Run npm ci
         run: npm ci
 
       # - name: Deploy with SST
