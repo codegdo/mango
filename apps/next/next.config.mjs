@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   env: {
     API_URL: 'http://localhost:5000/api/v1',
     COOKIE_NAME: 'mango.sid',
